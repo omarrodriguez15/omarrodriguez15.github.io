@@ -1,5 +1,4 @@
 /*!
- * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
@@ -24,22 +23,27 @@ h6 {
 .lead {
     font-size: 18px;
     font-weight: 400;
+	color: #FFFFFF;
+	<!--#FF4719;-->
 }
 
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
+    
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/keyboard.jpg) repeat center center;
+    background: url(../img/MDW.jpg) center center;
+	background-repeat:  repeat repeat;
+	height: 100%;
     background-size: auto;
 }
 .about-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/keyboard.jpg) repeat center center;
+    background: url(../img/MDW.jpg) center center;
+	background-repeat:repeat repeat;
+	height: 100%;
     background-size: auto;
 }
 .under-construction {
@@ -111,6 +115,7 @@ h6 {
 
 .content-section-a {
     padding: 50px 0;
+	background: url(../img/MDW.jpg) center center;
     background-color: #f8f8f8;
 }
 
@@ -118,16 +123,19 @@ h6 {
     padding: 50px 0;
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
+	background: url(../img/MDW.jpg) center center;
 }
 
 .section-heading {
     margin-bottom: 30px;
+	color: #FFFFFF;
+	<!--#1A292D-->
 }
 
 .section-heading-spacer {
     float: left;
     width: 200px;
-    border-top: 3px solid #e7e7e7;
+    border-top: 3px solid #1A292D;
 }
 
 .banner {
@@ -178,8 +186,8 @@ h6 {
 }
 
 footer {
-    padding: 50px 0;
-    background-color: #f8f8f8;
+   /*padding: 50px 0;
+    background-color: #f8f8f8;*/
 }
 
 p.copyright {
