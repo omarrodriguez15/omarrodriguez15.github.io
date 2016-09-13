@@ -13,93 +13,141 @@
         height: 7rem;
         width: 7rem;
     }
-
+    md-tabs[md-border-bottom] md-tabs-wrapper{
+        border-style:none;
+    }
+    .invisible{
+        z-index:-100;
+    }
+    .md-button.md-icon-button{
+        padding:0px;
+    }
 </style>
 <div ng-controller="homeController as home" ng-cloak flex>
 <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab md-primary label="Main">
-            <img src="/img/keyboard.jpg" alt="" width="100%" height="300px" style="position:absolute;">
-            <md-button class="md-icon-button logo"  style="position:relative;left:45%;top:50px;z-index:5;">
+            <img src="/img/keyboard.jpg" alt="" width="100%" style="position:absolute;">
+            <md-button class="md-icon-button logo"  style="position:relative;left:45%;top:30px;z-index:5;">
             <img class="logo-image" src="img/rr2d2.jpg">
             </md-button>
             <md-content class="md-padding" style="background:transparent;">
                   <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
-                    <div flex-xs flex-gt-xs="50" layout="column">
+                    <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
                     <md-card>
-                        <img ng-src="..\img\PiArt.png" class="md-card-image" alt="Washed Out">
+                        <img ng-src="{{home.mainImgPath}}" style="align-self:center;width:70%;" class="md-card-image" alt="Washed Out">
                         <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">About me</span>
+                            <span class="md-headline">About Me</span>
                         </md-card-title-text>
                         </md-card-title>
                         <md-card-content>
                         <p>
-                            I graduated from Texas A&M with a bachelor of science in Computer Engineering with a mathametics minor.
-                        The majority of my course work at A&M was with c/c++. I enjoy learning new languages and designing and building
-                        new projects from scratch.
+                            I graduated from Texas A&M with a bachelor of science in Computer Engineering with a minor in math.
+                             Half of my course work was Electrical Engineering and the other half was Computer Science. The majority of my course work at A&M was with c/c++. 
+                            I enjoy learning new languages and designing and building new projects from scratch.
                         </p>
-                        </md-card-content>
-                        <md-card-actions layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        </md-card-actions>
                     </md-card>
                     <md-card>
-                        <img ng-src="..\img\PiArt.png" class="md-card-image" alt="Washed Out">
+                        <md-card-header>
+                        <md-card-avatar>
+                            <img src="img/logo.svg"/>
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">Angular</span>
+                            <span class="md-subhead">Material</span>
+                        </md-card-header-text>
+                        </md-card-header>
                         <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">Card header</span>
+                            <span class="md-headline">About this site</span>
                         </md-card-title-text>
                         </md-card-title>
                         <md-card-content>
                         <p>
-                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+                            My plan for this website is to act as a Blog/About me website. I to start adding
+                            content frequently relating to my learning experiences as well as past, current, and future projects!
                         </p>
-                        </md-card-content>
                     </md-card>
-                    </div>
-                    <div flex-xs flex-gt-xs="50" layout="column">
-                        <md-card>
-                            <md-card-header>
-                            <md-card-avatar>
-                                <img src="img/logo.svg"/>
-                            </md-card-avatar>
-                            <md-card-header-text>
-                                <span class="md-title">Angular</span>
-                                <span class="md-subhead">Material</span>
-                            </md-card-header-text>
-                            </md-card-header>
-                            <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">About this site</span>
-                            </md-card-title-text>
-                            </md-card-title>
-                            <md-card-content>
-                            <p>
-                                My plan for this website is to act as a Blog/About me website, for now it will be a simple
-                                About me. In the future I will be adding content related to my learning experiences
-                                as well as past, current, and future projects!
-                            </p>
-                            </md-card-content>
-                            <md-card-actions layout="row" layout-align="end center">
-                            <md-button>Action 1</md-button>
-                            </md-card-actions>
-                        </md-card>
                     </div>
                 </md-content>
             </md-content>
         </md-tab>
-        <md-tab label="About">
-            <md-content class="md-padding">
-                <h1 class="md-display-2">Tab Two</h1>
-                <p>Lorem ipsum</p>
+        <md-tab label="Blog">
+            <img src="/img/keyboard.jpg" alt="" width="100%" style="position:absolute;">
+            <md-content class="md-padding" style="background:transparent;">>
+                <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
+                    <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
+                    <md-card>
+                        <img ng-src="{{home.blogImgPath}}" class="md-card-image" alt="Washed Out">
+                        <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Intro</span>
+                        </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                        <p>
+                            This is where I will post summarys of blogs linking to full content eventually...
+                            Check out <a href='https://github.com/omarrodriguez15/omarrodriguez15.github.io/wiki'>My Github Wiki </a>if you're bored. Beware it is not organized super well.
+                        </p>
+                    </md-card>
+                    <md-card class="invisible">
+                        <img ng-src="{{home.contactImgPath}}" class="md-card-image" alt="Washed Out">
+                        <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Contact Me</span>
+                        </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                        <p>
+                            HACKY CRAP RIGHT HERE TO MAKE THE BACKGROUND FILL THE PAGE
+                        </p>
+                    </md-card>
+                    </div>
             </md-content>
         </md-tab>
         <md-tab label="Contact">
-            <md-content class="md-padding">
-                <h1 class="md-display-2">Tab Three</h1>
-                <p>Integer turpis erat,</p>
+            <img src="/img/keyboard.jpg" alt="" width="100%" style="position:absolute;">
+            <md-content class="md-padding" style="background:transparent;">
+                <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
+                    <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
+                    <md-card>
+                        <img ng-src="{{home.contactImgPath}}" class="md-card-image" alt="Washed Out">
+                        <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Contact Me</span>
+                        </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                        <p>
+                            <a href="https://github.com/omarrodriguez15" class="btn btn-default btn-lg" ><i class="fa fa-envelope fa-lg"></i> 
+                            <span class="network-name">Email</span>
+                            </a>
+                            <a href="https://github.com/omarrodriguez15" class="btn btn-default btn-lg" style="padding:2%;"><i class="fa fa-github fa-lg"></i> 
+                            <span class="network-name">Github</span>
+                            </a>
+                            <a href="https://github.com/omarrodriguez15/omarrodriguez15.github.io/wiki" class="btn btn-default btn-lg" style="padding:2%;">
+                            <i class="fa fa-github fa-lg"></i> <span class="network-name">Wiki Page</span>
+                            </a>
+                            <a href="https://www.linkedin.com/pub/omar-rodriguez/90/9b1/29/" class="btn btn-default btn-lg" style="padding:2%;">
+                            <i class="fa fa-linkedin fa-lg"></i> 
+                            <span class="network-name">Linkedin</span>
+                            </a>
+                        </p>
+                    </md-card>
+                    <md-card class="invisible">
+                        <img ng-src="{{home.contactImgPath}}" class="md-card-image" alt="Washed Out">
+                        <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Contact Me</span>
+                        </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                        <p>
+                            HACKY CRAP RIGHT HERE TO MAKE THE BACKGROUND FILL THE PAGE
+                        </p>
+                    </md-card>
+                    </div>
             </md-content>
         </md-tab>
     </md-tabs>
