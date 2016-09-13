@@ -22,12 +22,16 @@
     .md-button.md-icon-button{
         padding:0px;
     }
+    .background-img{
+        background-image:url('/img/keyboard.jpg');
+        background-repeat:repeat-y;
+    }
 </style>
 <div ng-controller="homeController as home" ng-cloak flex>
 <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab md-primary label="Main">
-            <img src="/img/keyboard.jpg" alt="" width="100%" style="position:absolute;">
+            <div class="background-img">
             <md-button class="md-icon-button logo"  style="position:relative;left:45%;top:30px;z-index:5;">
             <img class="logo-image" src="img/rr2d2.jpg">
             </md-button>
@@ -72,24 +76,22 @@
                     </div>
                 </md-content>
             </md-content>
+            </div>
         </md-tab>
         <md-tab label="Blog">
-            <img src="/img/keyboard.jpg" alt="" width="100%" style="position:absolute;">
-            <md-content class="md-padding" style="background:transparent;">>
+            <div class="background-img">
+            <md-content class="md-padding" style="background:transparent;">
                 <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
                     <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
-                    <md-card>
-                        <img ng-src="{{home.blogImgPath}}" class="md-card-image" alt="Washed Out">
+                    <md-card ng-repeat="card in home.blogCards">
+                        <img ng-src="{{card.imgPath}}" class="md-card-image" alt="Washed Out">
                         <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">Intro</span>
+                            <span class="md-headline">{{card.title}}</span>
                         </md-card-title-text>
                         </md-card-title>
                         <md-card-content>
-                        <p>
-                            This is where I will post summarys of blogs linking to full content eventually...
-                            Check out <a href='https://github.com/omarrodriguez15/omarrodriguez15.github.io/wiki'>My Github Wiki </a>if you're bored. Beware it is not organized super well.
-                        </p>
+                        {{card.content}}
                     </md-card>
                     <md-card class="invisible">
                         <img ng-src="{{home.contactImgPath}}" class="md-card-image" alt="Washed Out">
@@ -105,9 +107,10 @@
                     </md-card>
                     </div>
             </md-content>
+            </div>
         </md-tab>
         <md-tab label="Contact">
-            <img src="/img/keyboard.jpg" alt="" width="100%" style="position:absolute;">
+            <div class="background-img">
             <md-content class="md-padding" style="background:transparent;">
                 <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
                     <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
@@ -120,7 +123,7 @@
                         </md-card-title>
                         <md-card-content>
                         <p>
-                            <a href="mailto:rodriguezomar91@gmail.com?Subject=Website%20Contact class="btn btn-default btn-lg" ><i class="fa fa-envelope fa-lg"></i> 
+                            <a href="mailto:rodriguezomar91@gmail.com?Subject=Website%20Contact" class="btn btn-default btn-lg" ><i class="fa fa-envelope fa-lg"></i> 
                             <span class="network-name">Email</span>
                             </a>
                             <a href="https://github.com/omarrodriguez15" class="btn btn-default btn-lg" style="padding:2%;"><i class="fa fa-github fa-lg"></i> 
@@ -149,6 +152,7 @@
                     </md-card>
                     </div>
             </md-content>
+            </div>
         </md-tab>
     </md-tabs>
 </md-content>
