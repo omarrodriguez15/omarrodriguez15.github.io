@@ -3,15 +3,13 @@
 */
 angular.module('aboutMe', ['ngMaterial',
     'home.controller',
-    'about.controller',
     'blog.controller',
     'ngRoute'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
 	when("/", {templateUrl: "views/home.html", controller: "homeController"}).
-  when("/about", {templateUrl: "views/about.html", controller: "aboutController"}).
-  when("/blog/0", {templateUrl: "views/blog.html", controller: "blogController"}).
-  when("/blog/1", {templateUrl: "views/blog.html", controller: "blogController"}).
+  when("/blog/0", {templateUrl: "views/blog0.html", controller: "blogController"}).
+  when("/blog/1", {templateUrl: "views/blog1.html", controller: "blogController"}).
 	otherwise({redirectTo: '/'});
 }]);
