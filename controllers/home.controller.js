@@ -3,6 +3,7 @@ angular.module('home.controller', []).
     console.log('made it here');
     var vm = this;
     vm.about = about;
+    vm.blogEntry = blogEntry;
     vm.contactImgPath = '..\\img\\ethernet.jpg';
     vm.mainImgPath = '..\\img\\gentTrans.jpg';
     vm.blogImgPath = '..\\img\\blogIntro.jpg';
@@ -10,12 +11,13 @@ angular.module('home.controller', []).
         {
           imgPath: '..\\img\\blogIntro.jpg',
           title:'Intro',
-          content:'This is where I will post summarys of blogs linking to full content eventually... if you\'re bored. Beware it is not organized super well.'
+          content:'This is where I will post summarys of blogs with the tiles linking to full content eventually...'
+          +'if you\'re bored check out the wiki on my Github website. Beware it is not organized super well.'
         },
         {
           imgPath:'..\\img\\blogIntro.jpg',
-          title: 'First Entry',
-          content: 'Here is my first entry'
+          title: 'Arduino',
+          content: 'Quick overview of arduino how to start and what it is capable of doing'
         }
       ];
 
@@ -25,5 +27,9 @@ angular.module('home.controller', []).
       $location.path('/about');
       console.log('About click');
       
+    }
+
+    function blogEntry(ndx){
+      $location.path('/blog/'+ndx);
     }
   });

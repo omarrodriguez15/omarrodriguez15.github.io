@@ -1,0 +1,30 @@
+md-tabs .md-tab.md-active{
+    color: white;
+}
+md-tabs-canvas{
+    background: dimgrey;
+}
+.logo-image {
+    height: 100%;
+    width: 100%;
+}
+.md-button.logo {
+    height: 7rem;
+    width: 7rem;
+}
+md-tabs[md-border-bottom] md-tabs-wrapper{
+    border-style:none;
+}
+.invisible{
+    z-index:-100;
+}
+.md-button.md-icon-button{
+    padding:0px;
+}
+.background-img{
+    background-image:url('/img/back.jpg');
+    background-repeat:repeat-y;
+}
+md-toolbar.md-hue-2:not(.md-menu-toolbar){
+    background-color: rgb(68, 68, 68);
+}

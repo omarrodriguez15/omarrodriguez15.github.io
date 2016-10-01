@@ -1,32 +1,4 @@
-<style>
-    md-tabs .md-tab.md-active{
-        color: white;
-    }
-    md-tabs-canvas{
-        background: dimgrey;
-    }
-    .logo-image {
-        height: 100%;
-        width: 100%;
-    }
-    .md-button.logo {
-        height: 7rem;
-        width: 7rem;
-    }
-    md-tabs[md-border-bottom] md-tabs-wrapper{
-        border-style:none;
-    }
-    .invisible{
-        z-index:-100;
-    }
-    .md-button.md-icon-button{
-        padding:0px;
-    }
-    .background-img{
-        background-image:url('/img/keyboard.jpg');
-        background-repeat:repeat-y;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
 <div ng-controller="homeController as home" ng-cloak flex>
 <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
@@ -49,7 +21,11 @@
                         <p>
                             I graduated from Texas A&M with a bachelor of science in Computer Engineering with a minor in math.
                              Half of my course work was Electrical Engineering and the other half was Computer Science. The majority of my course work at A&M was with c/c++. 
-                            I enjoy learning new languages and designing and building new projects from scratch.
+                            I enjoy learning new languages/frameworks, designing/building new projects from scratch, and recently automating all the things.
+                            <br><br>
+                            Currently I am a Software Engineer at NCR. My day to day consist of working on new features, fixing future bugs, and
+                            reaserching new technologies for future projects. I mainly work with .NET framework although recently have be dabbling in
+                            Android developement, openCV with Python, and Automating server configuration with Chef.
                         </p>
                     </md-card>
                     <md-card>
@@ -73,47 +49,6 @@
                             content frequently relating to my learning experiences as well as past, current, and future projects!
                         </p>
                     </md-card>
-                    </div>
-                </md-content>
-            </md-content>
-            </div>
-        </md-tab>
-        <md-tab label="Blog">
-            <div class="background-img">
-            <md-content class="md-padding" style="background:transparent;">
-                <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
-                    <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
-                    <md-card ng-repeat="card in home.blogCards">
-                        <img ng-src="{{card.imgPath}}" class="md-card-image" alt="Washed Out">
-                        <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">{{card.title}}</span>
-                        </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content>
-                        {{card.content}}
-                    </md-card>
-                    <md-card class="invisible">
-                        <img ng-src="{{home.contactImgPath}}" class="md-card-image" alt="Washed Out">
-                        <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Contact Me</span>
-                        </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content>
-                        <p>
-                            HACKY CRAP RIGHT HERE TO MAKE THE BACKGROUND FILL THE PAGE
-                        </p>
-                    </md-card>
-                    </div>
-            </md-content>
-            </div>
-        </md-tab>
-        <md-tab label="Contact">
-            <div class="background-img">
-            <md-content class="md-padding" style="background:transparent;">
-                <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
-                    <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
                     <md-card>
                         <img ng-src="{{home.contactImgPath}}" class="md-card-image" alt="Washed Out">
                         <md-card-title>
@@ -137,6 +72,26 @@
                             <span class="network-name">Linkedin</span>
                             </a>
                         </p>
+                    </md-card>
+                    </div>
+                </md-content>
+            </md-content>
+            </div>
+        </md-tab>
+        <md-tab label="Blog">
+            <div class="background-img">
+            <md-content class="md-padding" style="background:transparent;">
+                <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
+                    <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
+                    <md-card ng-repeat="card in home.blogCards">
+                        <img ng-src="{{card.imgPath}}" class="md-card-image" alt="Washed Out">
+                        <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline"><a href="" ng-click="home.blogEntry($index)">{{card.title}}</a></span>
+                        </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                        {{card.content}}
                     </md-card>
                     <md-card class="invisible">
                         <img ng-src="{{home.contactImgPath}}" class="md-card-image" alt="Washed Out">
