@@ -17,7 +17,7 @@ angular.module('jackal.controller', []).
     function simulateRounds() {
        console.log('simulateRounds');
 
-       $http.get('http://jackalapi.azurewebsites.net/api/values' + vm.numOfRounds)
+       $http.get('http://jackalapi.azurewebsites.net/api/values/' + vm.numOfRounds)
          .then(function(response) {
             vm.players = response.data;
          });
