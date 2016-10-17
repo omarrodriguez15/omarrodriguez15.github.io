@@ -4,6 +4,7 @@
 angular.module('aboutMe', ['ngMaterial',
     'home.controller',
     'blog.controller',
+    'jackal.controller',
     'ngRoute'
 ]).
 config(['$routeProvider', function($routeProvider) {
@@ -11,5 +12,6 @@ config(['$routeProvider', function($routeProvider) {
 	when("/", {templateUrl: "views/home.html", controller: "homeController"}).
   when("/blog/0", {templateUrl: "views/blog0.html", controller: "blogController"}).
   when("/blog/1", {templateUrl: "views/blog1.html", controller: "blogController"}).
+  when("/jackal", {templateUrl: "views/jackal.html", controller: "jackalController"}).
 	otherwise({redirectTo: '/'});
 }]);

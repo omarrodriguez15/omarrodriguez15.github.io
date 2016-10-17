@@ -1,7 +1,8 @@
 angular.module('home.controller', []).
-  controller('homeController', function($scope, $location) {
+  controller('homeController', function($scope, $location, $http) {
     console.log('made it here');
     var vm = this;
+
     vm.about = about;
     vm.blogEntry = blogEntry;
     vm.contactImgPath = '..\\img\\ethernet.jpg';

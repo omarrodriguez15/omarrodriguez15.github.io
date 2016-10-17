@@ -1,0 +1,37 @@
+<link rel="stylesheet" type="text/css" href="/css/jackal.css" media="screen">
+<div ng-controller="jackalController as jackal" ng-cloak flex>
+    <!--<md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="jackal.showAllCards">
+    Show All Cards
+   </md-switch>-->
+   <md-content style="margin: 1%; padding:16px">
+      <md-slider-container>
+         <span class="md-body-1"># of Rounds</span>
+         <md-slider flex ng-model="jackal.numOfRounds" min="0" max="50" class="md-primary">
+         </md-slider>
+         <md-input-container>
+         <input flex type="number" ng-model="jackal.numOfRounds" >
+         </md-input-container>
+      </md-slider-container>
+   </md-content>
+   <md-button ng-click="jackal.simulateRounds()" class="md-raised md-primary">Simulate</md-button>
+   <div class='md-padding' layout="row" layout-wrap>
+      <md-card style="width: 11%;height:175px" ng-repeat="player in jackal.players">
+         <md-card-title>
+            <md-card-title-text>
+               <span class="md-headline">{{player.name}}</span>
+               <span class="md-headline">{{'$' + player.cash}}</span>
+            </md-card-title-text>
+         </md-card-title>
+      </md-card>
+   </div>
+   <!--<div ng-if="jackal.showAllCards" class='md-padding' layout="row" layout-wrap>
+      <md-card style="width: 11%;height:175px" ng-repeat="card in jackal.cards">
+         <md-card-title>
+            <md-card-title-text>
+               <span class="md-headline">{{card.suitString}}</span>
+               <span class="md-headline">{{card.valString}}</span>
+            </md-card-title-text>
+         </md-card-title>
+      </md-card>
+   </div>-->
+</div>
