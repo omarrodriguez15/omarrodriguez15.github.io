@@ -3,15 +3,60 @@
     <!--<md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="jackal.showAllCards">
     Show All Cards
    </md-switch>-->
-   <md-content style="margin: 1%; padding:16px">
-      <md-slider-container>
-         <span class="md-body-1"># of Rounds</span>
-         <md-slider flex ng-model="jackal.numOfRounds" min="0" max="300" class="md-primary">
-         </md-slider>
-         <md-input-container>
-         <input flex type="number" ng-model="jackal.numOfRounds" >
-         </md-input-container>
-      </md-slider-container>
+   <md-content style="margin: 1%; padding:1%">
+      <div layout="row" layout-xs="column" style="padding:2%;">
+        <md-slider-container flex="50" style="padding:2%;">
+            <span class="md-body-1"># of Rounds</span>
+            <md-slider flex ng-model="jackal.numOfRounds" min="0" max="300" class="md-primary">
+            </md-slider>
+            <md-input-container>
+            <input flex type="number" ng-model="jackal.numOfRounds" >
+            </md-input-container>
+        </md-slider-container>
+        <md-slider-container flex="50" style="padding:2%;">
+            <span class="md-body-1">Starting Amount of $</span>
+            <md-slider flex ng-model="jackal.startingAmt" min="0" max="100" class="md-primary">
+            </md-slider>
+            <md-input-container>
+            <input flex type="number" ng-model="jackal.startingAmt" >
+            </md-input-container>
+        </md-slider-container>
+      </div>
+      <div layout="row" layout-xs="column" style="padding:2%;">
+        <md-slider-container flex="50" style="padding:2%;">
+            <span class="md-body-1">$ Amount per bet</span>
+            <md-slider flex ng-model="jackal.betAmt" min="0" max="5000" class="md-primary">
+            </md-slider>
+            <md-input-container>
+            <input flex type="number" ng-model="jackal.betAmt" >
+            </md-input-container>
+        </md-slider-container>
+        <div style="padding:2%;">
+            <label>Bet Strategy</label>
+            <md-select ng-model="jackal.betStrategy" placeholder="Boring" class="md-no-underline">
+                <md-option value="0">Boring</md-option>
+                <md-option value="1">Progressive</md-option>
+            </md-select>
+        </div>
+        <div style="padding:2%;">
+            <label># of Decks</label>
+            <md-select ng-model="jackal.numOfDecks" placeholder="4" class="md-no-underline">
+                <md-option value="4">4</md-option>
+                <md-option value="3">3</md-option>
+                <md-option value="2">2</md-option>
+                <md-option value="1">1</md-option>
+            </md-select>
+        </div>
+        <div style="padding:2%;">
+            <label># of Players</label>
+            <md-select ng-model="jackal.numOfPlayers" placeholder="2" class="md-no-underline">
+                <md-option value="4">4</md-option>
+                <md-option value="3">3</md-option>
+                <md-option value="2">2</md-option>
+                <md-option value="1">1</md-option>
+            </md-select>
+        </div>
+      </div>
    </md-content>
    <md-button ng-click="jackal.simulateRounds()" class="md-raised md-primary">Simulate</md-button>
    <div class='md-padding' layout="row" layout-wrap>
