@@ -3,6 +3,8 @@ angular.module('jackal.controller', []).
     console.log('jackal controller');
     var vm = this;
     vm.showOutput = false;
+    vm.showVerboseOutput = false;
+    vm.simulationOutput = '';
     vm.simulateRounds = simulateRounds;
     vm.numOfDecks = 4;
     vm.numOfPlayers = 2;
@@ -35,7 +37,10 @@ angular.module('jackal.controller', []).
 
        $http.get(prodUrl + queryString)
          .then(function(response) {
-            vm.players = response.data;
+            if(!response.data)
+              return "POOP";
+            vm.players = response.data.players;
+            vm.simulationOutput = response.data.output;
          });
     }
 

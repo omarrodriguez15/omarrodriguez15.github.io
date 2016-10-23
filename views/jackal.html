@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" href="/css/jackal.css" media="screen">
-<div ng-controller="jackalController as jackal" ng-cloak flex>
-    <!--<md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="jackal.showAllCards">
-    Show All Cards
-   </md-switch>-->
-   <md-content style="padding:0 2% 0 2%">
+<div ng-controller="jackalController as jackal" style="padding:0 2% 0 2%" ng-cloak flex>
+    <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="jackal.showVerboseOutput">
+    Show Verbose output
+   </md-switch>
+   <md-content>
        <div layout="row" layout-xs="column" >
         <div style="padding:2%;">
             <label># of Decks</label>
@@ -32,28 +32,28 @@
         </div>
         <md-slider-container flex style="padding:2%;">
             <label style="max-width:100%;">$'s per bet</label>
-            <md-slider flex ng-model="jackal.betAmt" min="0" max="100" class="md-primary">
+            <md-slider flex ng-model="jackal.betAmt" min="0" max="100" class="md-primary" aria-label="bet">
             </md-slider>
             <md-input-container>
-            <input flex type="number" ng-model="jackal.betAmt" >
+            <input flex type="number" ng-model="jackal.betAmt" aria-label="bet">
             </md-input-container>
         </md-slider-container>
       </div>
       <div layout="row" layout-xs="column">
         <md-slider-container flex style="padding:2%;">
             <label style="max-width:100%;"># of Rounds</label>
-            <md-slider flex ng-model="jackal.numOfRounds" min="0" max="300" class="md-primary">
+            <md-slider flex ng-model="jackal.numOfRounds" min="0" max="300" class="md-primary" aria-label="rounds">
             </md-slider>
             <md-input-container>
-            <input flex type="number" ng-model="jackal.numOfRounds" >
+            <input flex type="number" ng-model="jackal.numOfRounds" aria-label="rounds">
             </md-input-container>
         </md-slider-container>
         <md-slider-container flex style="padding:2%;">
             <label style="max-width:100%;">Starting Amt of $</label>
-            <md-slider flex ng-model="jackal.startingAmt" min="0" max="3000" class="md-primary">
+            <md-slider flex ng-model="jackal.startingAmt" min="0" max="3000" class="md-primary" aria-label="amt">
             </md-slider>
             <md-input-container>
-            <input flex type="number" ng-model="jackal.startingAmt" >
+            <input flex type="number" ng-model="jackal.startingAmt" aria-label="amt">
             </md-input-container>
         </md-slider-container>
       </div>
@@ -69,14 +69,12 @@
          </md-card-title>
       </md-card>
    </div>
-   <!--<div ng-if="jackal.showAllCards" class='md-padding' layout="row" layout-wrap>
-      <md-card style="width: 11%;height:175px" ng-repeat="card in jackal.cards">
-         <md-card-title>
-            <md-card-title-text>
-               <span class="md-headline">{{card.suitString}}</span>
-               <span class="md-headline">{{card.valString}}</span>
-            </md-card-title-text>
-         </md-card-title>
-      </md-card>
-   </div>-->
+   <md-card ng-if="jackal.showVerboseOutput" 
+   style="white-space: pre-line;padding:2%;height:200px;overflow:auto;">
+        <md-card-title>
+        <md-card-title-text>
+            <p>{{jackal.simulationOutput}}</p>
+        </md-card-title-text>
+        </md-card-title>
+    </md-card>
 </div>
