@@ -6,7 +6,7 @@ angular.module('jackal.controller', []).
     vm.simulateRounds = simulateRounds;
     vm.numOfDecks = 4;
     vm.numOfPlayers = 2;
-    vm.numOfRounds = 2;
+    vm.numOfRounds = 10;
     vm.startingAmt = 1000;
     vm.betAmt = 5;
     vm.betStrategy = 0;
