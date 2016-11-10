@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="/css/jackal.css" media="screen">
+<style>
+        .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+        #fillgauge {padding: 5% 35% 5% 35%; }
+</style>
+<script src="/js/coffee/d3.v3.min.js" language="JavaScript"></script>
+<script src="/js/coffee/liquidFillGauge.js" language="JavaScript"></script>
+<div ng-controller="coffeeController as coffee" style="padding:0 2% 0 2%" ng-cloak flex>
+    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Coffee Level</span>
+            <span class="md-subhead">Small</span>
+          </md-card-title-text>
+        </md-card-title>
+        <svg id="fillgauge" width="500px" height="500px" ></svg>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="coffee.newValue()">Refresh</md-button>
+        </md-card-actions>
+      </md-card>
+</div>
