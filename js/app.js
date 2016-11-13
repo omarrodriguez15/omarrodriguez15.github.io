@@ -11,8 +11,10 @@ angular.module('aboutMe', ['ngMaterial',
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
 	when("/", {templateUrl: "views/home.html", controller: "homeController"}).
+  when("/blog", {templateUrl: "views/blog.html", controller: "blogController"}).
   when("/blog/0", {templateUrl: "views/blog0.html", controller: "blogController"}).
   when("/blog/1", {templateUrl: "views/blog1.html", controller: "blogController"}).
+  when("/blog/2", {templateUrl: "views/blog2.html", controller: "blogController"}).
   when("/jackal", {templateUrl: "views/jackal.html", controller: "jackalController"}).
   when("/coffee", {templateUrl: "views/coffee.html", controller: "coffeeController"}).
 	otherwise({redirectTo: '/'});

@@ -1,0 +1,102 @@
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
+<div ng-controller="blogController as blog" ng-cloak flex>
+<md-content>
+    <div class="background-img">
+    <md-content class="md-padding" style="background:transparent;">
+        <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
+            <div flex-xs flex-offset="25" flex-gt-xs="50" layout="column">
+            <md-card>
+                <img ng-src="..\\img\\debug.png" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"><h2>IDE's (Integrated Development Enviornment)</h2></span>
+                </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                An IDE is basically a really fancy text editor. IDE's usually have a
+                lot of common functionallity such as Syntax highlighting, auto completion, built in debuggers, dependency managers,
+                template generators, just to name a few.
+                <br>
+                <br>
+                Some of the most popular IDE's are Visual Studio, Xamarin Studio, Android Studio, Eclipse, and Xcode.
+                Each one of these IDE's have a main framework and or language that they are specifically good at but are
+                able to handle other languages or frameworks.
+                <br>
+                <br>
+                <strong>Visual Studio</strong>
+                <br>
+                <br>
+                Visual Studio, personally my favorite, is a Microsoft product that as of today only runs on Windows. Its supports 
+                quite a few languages such as C#, C++, F#, VB, python. It also supports some other languages just not super 
+                well yet, such as Javascript, HTML, and Typescript.
+                <br>
+                <br>
+                Visual Studio works best with C#, VB, F#, and C++. Basically languages that implement .Net Framework. 
+                The downside is it only runs on Windows and it is expensive. However you can get a free version that is limited and 
+                good enough for small scale projects. There is a new Text editor/Light weight IDE called Visual Code that 
+                is cross platform, meaning it will work on OSX or Linux. It looks very promising and is surprisingly powerful 
+                and lightweight. This IDE is also very big and can be laggy at times. That being said it is still my favorite IDE.
+                <br>
+                <br>
+                <strong>Xamarin Studio</strong>
+                <br>
+                <br>
+                The offical IDE for Xamarin projects. Was originally on both Windows and OSX but when Microsoft bought the company
+                it was wrapped up into Visual Studio. Now Xamarin projects are developed in Visual studio on Windows but still use 
+                Xamarin studio on OSX. Xamarin projects are cross platform mobile and desktop applications. All projects use the 
+                C# language.
+                <br>
+                <br>
+                <strong>Android Studio</strong>
+                <br>
+                <br>
+                An IDE created by Google. The IDE works on OSX and Windows. The IDE is fairly young but has recieved widespred
+                adoption among Native Android developers. It is currently the only officially supported IDE (I think).
+                <br>
+                <br>
+                <strong>Eclipse</strong>
+                <br>
+                <br>
+                Eclipse is the go to IDE for Java delvelopers. It works on OSX and Windows. It was originally the go to 
+                IDE for Android apps until recently when Google created Android Studio.
+                <br>
+                <br>
+                <strong>Xcode</strong>
+                <br>
+                <br>
+                Xcode is the main IDE for IOS and OSX App development. It is free on Mac's however you need a developers 
+                license (around $100 a year) to actually build and deploy to the app store. The IDE only works on OSX. It 
+                supports Objective-C and Swift. I have really used it passed hello world apps so I don't have much to say
+                about it.
+                <br>
+                <br>
+                <strong>Glossary</strong>
+                <br>
+                <strong>Syntax highlighting</strong> - Color text different depending on what category it falls into to more easily read and 
+                understand code.<br>
+                <strong>Auto completion</strong> - Similar to normal text auto completion but targeted to language specific terms, methods, or
+                functions etc.<br>
+                <strong>Debugger</strong> - used to run and test a program in an Enviornment where you can examine the code dynamically.<br>
+                <strong>Dependency Manager</strong> - Handles downloading and updating external packages.<br>
+                <strong>Template generator</strong> - Creates new projects from scratch. Creates all the folders and files needed for 
+                simple hello world projects.
+                <br>
+                <br>
+            </md-card>
+            <md-card class="invisible">
+                <img ng-src="{{blog.contactImgPath}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Contact Me</span>
+                </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                <p>
+                    HACKY CRAP RIGHT HERE TO MAKE THE BACKGROUND FILL THE PAGE
+                </p>
+            </md-card>
+            </div>
+    </md-content>
+    </div>
+</md-content>
+</div>
