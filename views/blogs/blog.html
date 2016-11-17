@@ -1,45 +1,43 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
 <div ng-controller="blogController as blog" ng-cloak flex>
-<md-content>
-   <div class="background-img">
-         <md-content class="md-padding" style="background:transparent;">
-               <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
-                  <div flex-xs flex-gt-xs="50" layout="column">
-                  <md-card>
-                     <img ng-src="..\\img\\blogIntro.jpg" class="md-card-image" alt="Washed Out">
-                     <md-card-title>
-                     <md-card-title-text>
-                           <span class="md-headline"><a href="" ng-click="blog.blogEntry(0)">Intro</a></span>
-                     </md-card-title-text>
-                     </md-card-title>
-                     <md-card-content>
-                     This is where I will post summarys of blogs with the tiles linking to full content eventually...
-                     if you\'re bored check out the wiki on my Github website. Beware it is not organized super well.
-                  </md-card>
-                  <md-card>
-                     <img ng-src="..\\img\\arduino.png" class="md-card-image" alt="Washed Out">
-                     <md-card-title>
-                     <md-card-title-text>
-                           <span class="md-headline"><a href="" ng-click="blog.blogEntry(1)">Arduino</a></span>
-                     </md-card-title-text>
-                     </md-card-title>
-                     <md-card-content>
-                     Quick overview of arduino how to start and what it is capable of doing
-                  </md-card>
-                  </div>
-                  <div flex-xs flex-gt-xs="50" layout="column">
-                  <md-card>
-                     <img ng-src="..\\img\\debug.png" class="md-card-image" alt="Washed Out">
-                     <md-card-title>
-                     <md-card-title-text>
-                           <span class="md-headline"><a href="" ng-click="blog.blogEntry(2)">IDE's (Integrated Development Enviornment)</a></span>
-                     </md-card-title-text>
-                     </md-card-title>
-                     <md-card-content>
-                     An overview of IDE's for different languages and devices
-                  </md-card>
-                  </div>
-         </md-content>
-      </div>
+<md-content style="background:transparent;">
+      <md-content class="md-padding" style="background:transparent;">
+            <md-content class="md-padding" style="background:transparent;" layout-xs="column" layout="row">
+            <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card>
+                  <img ng-src="..\\img\\blogIntro.jpg" class="md-card-image" alt="Washed Out">
+                  <md-card-title>
+                  <md-card-title-text>
+                        <span class="md-headline"><a href="" ng-click="blog.blogEntry(0)">Intro</a></span>
+                  </md-card-title-text>
+                  </md-card-title>
+                  <md-card-content>
+                  This is where I will post summarys of blogs with the tiles linking to full content eventually...
+                  if you\'re bored check out the wiki on my Github website. Beware it is not organized super well.
+            </md-card>
+            <md-card>
+                  <img ng-src="..\\img\\arduino.png" class="md-card-image" alt="Washed Out">
+                  <md-card-title>
+                  <md-card-title-text>
+                        <span class="md-headline"><a href="" ng-click="blog.blogEntry(1)">Arduino</a></span>
+                  </md-card-title-text>
+                  </md-card-title>
+                  <md-card-content>
+                  Quick overview of arduino how to start and what it is capable of doing
+            </md-card>
+            </div>
+            <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card>
+                  <img ng-src="..\\img\\debug.png" class="md-card-image" alt="Washed Out">
+                  <md-card-title>
+                  <md-card-title-text>
+                        <span class="md-headline"><a href="" ng-click="blog.blogEntry(2)">IDE's (Integrated Development Enviornment)</a></span>
+                  </md-card-title-text>
+                  </md-card-title>
+                  <md-card-content>
+                  An overview of IDE's for different languages and devices
+            </md-card>
+            </div>
+      </md-content>
 </md-content>
 </div>
