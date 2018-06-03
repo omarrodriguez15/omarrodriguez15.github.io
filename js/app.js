@@ -15,7 +15,7 @@ config(['$routeProvider', function($routeProvider) {
   when("/blog/0", {templateUrl: "views/blogs/blog0.html", controller: "blogController"}).
   when("/blog/1", {templateUrl: "views/blogs/blog1.html", controller: "blogController"}).
   when("/blog/2", {templateUrl: "views/blogs/blog2.html", controller: "blogController"}).
-  when("/jackal", {templateUrl: "views/jackal.html", controller: "jackalController"}).
-  when("/coffee", {templateUrl: "views/coffee.html", controller: "coffeeController"}).
+  //when("/jackal", {templateUrl: "views/jackal.html", controller: "jackalController"}).
+  //when("/coffee", {templateUrl: "views/coffee.html", controller: "coffeeController"}).
 	otherwise({redirectTo: '/'});
 }]);

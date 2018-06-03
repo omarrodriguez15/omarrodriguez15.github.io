@@ -1,50 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--Font awesome!-->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+   <!--Font awesome!-->
+   <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+   <!-- Angular Material style sheet -->
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+   <!-- My custom style sheet -->
+   <link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="keywords" content="software,blog,omar,omar rodriguez,college station,texas,Texas A&M">
+   <meta name="description" content="About me page programming blog and tutorials about software development">
+   <meta name="author" content="Omar Javier Rodriguez">
+   <link rel="shortcut icon" type="image/x-icon" href="img/coffeeIcon.ico" />
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="software,blog,omar,omar rodriguez,college station,texas,Texas A&M">
-    <meta name="description" content="About me page programming blog and tutorials about software development">
-    <meta name="author" content="Omar Javier Rodriguez">
-    <link rel="shortcut icon" type="image/x-icon" href="img/coffeeIcon.ico" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+   <![endif]-->
+
 </head>
 
 <body ng-app="aboutMe">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-        <!--<md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-        </md-button>-->
         <h2 flex>
             <span style="padding-right:3%;"><a href="/#/">Home</a></span>
             <span><a href="/#/blog">Blog</a></span>
         </h2>
-        <!--<span flex></span>-->
-        <!--<md-button class="md-icon-button" aria-label="More">
-            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-        </md-button>-->
         </div>
     </md-toolbar>
     <div class="background-img">
         <ng-view></ng-view>
     </div>
-    <div style="padding:0 10% 0 10%;" id="disqus_thread"></div>
-    <script src="js/disqus.js"></script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
 
