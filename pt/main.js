@@ -19,7 +19,6 @@ function dropHandler(e) {
     e.preventDefault();
 
     updatePriceEstimate(calculatePriceEtimate());
-    showCheckoutButton();
 
     if (e.dataTransfer.items) {
         // Use DataTransferItemList interface to access the file(s)
