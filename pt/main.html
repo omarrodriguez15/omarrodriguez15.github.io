@@ -1,11 +1,85 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <link rel="stylesheet" href="main.css">
+
 <div class="alert alert-primary text-center" role="alert">
     Drag and Drop Files onto the logo and get a free print estimate. 
 </div>
 <div class="text-center main-container" id="drop_zone" 
     ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-    <img class="center-logo" src="/img/icons/book.png" class="rounded">
+    <div class="center-logo" >
+        <div id="price-container">
+            <div style="display:inline-flex;">
+                <h1>Price Estimate </h1>
+                <i class="fas fa-cog fa-sm clickable" data-toggle="modal" data-target="#details-modal"></i>
+            </div>
+            <h3 id="price-text">$00.00</h3>
+        </div>
+        <img width="15%" height="25%" src="/img/icons/book.png" class="rounded">
+        <ul class="list-group file-names-container" id="file-names-container">
+        </ul>
+    </div>
+    <button id="checkout-btn" type="button" class="btn btn-primary" style="visibility:hidden;">Checkout</button>
 </div>
 
+<!-- Modal Form Here -->
+<div class="modal fade" id="details-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Print settings</h5>
+      </div>
+      <div class="modal-body">
+        <form id="details-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="recordId">Pick up type</label>
+                <input type="text" class="form-control" id="recordId" placeholder="Copystop at Blinn" readonly>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputState">Container type</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Bound</option>
+                    <option>Loose leaf</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">Layout orientation</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Portrait 8.5 x 11</option>
+                    <option>Landscape 11 x 8.5</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inputState">Color</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Black & White</option>
+                    <option>Color</option>
+                </select>
+            </div>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button id="modal-cancel" type="button" 
+          class="btn btn-secondary" 
+          data-dismiss="modal">
+          Cancel
+        </button>
+        <button id="btnUpdate" type="submit" 
+          class="btn btn-primary" data-update="modal">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="jquery-3.3.1.slim.min.js"></script>
+<script src="popper.min.js"></script>
+<script src="bootstrap.min.js"></script>
 <script src="main.js" ></script>
