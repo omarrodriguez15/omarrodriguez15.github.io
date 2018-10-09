@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="main.css">
 
 <div class="alert alert-primary text-center" role="alert">
-    Drag and Drop Files onto the logo and get a free print estimate. 
+    Drag and Drop Files onto the logo and get a free print estimate.
+    <i class="fas fa-shopping-cart clickable" data-toggle="modal" data-target="#details-modal"></i>
 </div>
 <div class="text-center main-container" id="drop_zone" 
     ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
@@ -13,7 +14,7 @@
                 <h1>Price Estimate </h1>
                 <i class="fas fa-cog fa-sm clickable" data-toggle="modal" data-target="#details-modal"></i>
             </div>
-            <h3 id="price-text">$00.00</h3>
+            <h3 id="price-text">$0.00</h3>
         </div>
         <img width="15%" height="25%" src="/img/icons/book.png" class="rounded">
         <ul class="list-group file-names-container" id="file-names-container">
@@ -27,7 +28,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Print settings</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Print order</h5>
       </div>
       <div class="modal-body">
         <form id="details-form">
