@@ -33,47 +33,77 @@
       <div class="modal-body">
         <form id="details-form">
         <div class="form-row">
-            <div class="form-group">
-                <label for="recordId">Pick up type</label>
+            <div class="form-group col-md-6">
+                <label for="recordId">Pick up location</label>
                 <input type="text" class="form-control" id="recordId" placeholder="Copystop at Blinn" readonly>
             </div>
-        </div>
-        <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputState">Container type</label>
+                <label for="recordId">Paper</label>
                 <select id="inputState" class="form-control">
-                    <option selected>Bound</option>
-                    <option>Loose leaf</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputState">Layout orientation</label>
-                <select id="inputState" class="form-control">
-                    <option selected>Portrait 8.5 x 11</option>
-                    <option>Landscape 11 x 8.5</option>
+                    <option selected>Standard</option>
+                    <option>Lab paper +$0.03 per page</option>
                 </select>
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group">
-                <label for="inputState">Color</label>
+            <div class="form-group col-md-6">
+                <label for="inputState">Binding</label>
                 <select id="inputState" class="form-control">
-                    <option selected>Black & White</option>
-                    <option>Color</option>
+                    <option selected>Coil bound $4.95</option>
+                    <option>3 holeshrink wrapped $1.00</option>
                 </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">Ink</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Full Color $0.30-$0.45</option>
+                    <option>Black & White $0.06-$0.12</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-column col-md-6">
+                <label for="inputState">Duplexing</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="duplexing" id="dSided" value="option1" checked>
+                    <label class="form-check-label" for="dSided">
+                        Double sided
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="duplexing" id="sSided" value="option2">
+                    <label class="form-check-label" for="sSided">
+                        Single sided
+                    </label>
+                </div>
+            </div>
+            <div class="form-column col-md-6">
+                <label for="inputState">Layout</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="layout" id="portrait" value="option1" checked>
+                    <label class="form-check-label" for="portrait">
+                        Portrait
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="layout" id="landscape" value="option2">
+                    <label class="form-check-label" for="landscape">
+                        Landscape
+                    </label>
+                </div>
             </div>
         </div>
         </form>
       </div>
       <div class="modal-footer justify-content-center">
-        <button id="modal-cancel" type="button" 
+        <button id="modal-back" type="button" 
           class="btn btn-secondary" 
           data-dismiss="modal">
-          Cancel
+          Back
         </button>
-        <button id="btnUpdate" type="submit" 
-          class="btn btn-primary" data-update="modal">
-          Save
+        <button id="modal-checkout" type="submit" 
+          class="btn btn-success" data-update="modal">
+          Checkout
         </button>
       </div>
     </div>

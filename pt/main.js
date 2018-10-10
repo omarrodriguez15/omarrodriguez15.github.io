@@ -1,7 +1,8 @@
-$('#details-modal').on('show.bs.modal', openOrderDetailsModalEvent);
+document.getElementById('modal-checkout').onclick = modalCheckout;
 
-function openOrderDetailsModalEvent () {
-    console.log('hhhh');
+function modalCheckout() {
+    console.log('checkout clicked');
+    $('#details-modal').modal('toggle');
 }
 
 function dragOverHandler(e) {
