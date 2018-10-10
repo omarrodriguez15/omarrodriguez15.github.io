@@ -1,7 +1,17 @@
+let totalNumberOfPages = 0;
+
 document.getElementById('modal-checkout').onclick = modalCheckout;
+document.getElementById('modal-back').onclick = modalBackClicked;
 
 function modalCheckout() {
     console.log('checkout clicked');
+    updatePriceEstimate(calculatePriceEtimate(totalNumberOfPages));
+    $('#details-modal').modal('toggle');
+}
+
+function modalBackClicked() {
+    console.log('Modal back clicked');
+    updatePriceEstimate(calculatePriceEtimate(totalNumberOfPages));
     $('#details-modal').modal('toggle');
 }
 
@@ -18,8 +28,9 @@ function dropHandler(e) {
 
     // Prevent default behavior (Prevent file from being opened)
     e.preventDefault();
+    totalNumberOfPages = 50;
 
-    updatePriceEstimate(calculatePriceEtimate());
+    updatePriceEstimate(calculatePriceEtimate(totalNumberOfPages));
 
     if (e.dataTransfer.items) {
         // Use DataTransferItemList interface to access the file(s)
@@ -46,11 +57,60 @@ function dragStartHandler(e) {
     console.log("dragstarthandler");
 }
 
-function calculatePriceEtimate() {
-    return '10.99'
+function calculatePriceEtimate(pageCount) {
+    if (pageCount <= 0) return;
+    let bindingPrice = getBindingPrice();
+    let inkPrice = getInkPrice(pageCount);
+    let pagePrice = getPagePrice();
+
+    return bindingPrice + (pageCount * inkPrice) + (pageCount * pagePrice);
+}
+
+function getPagePrice() {
+    return parseInt(document.getElementById('paper').value, 10);
+}
+
+function getBindingPrice() {
+    return parseInt(document.getElementById('binding').value, 10);
+}
+
+function getInkPrice(pageCount) {
+    let inkType = document.getElementById('ink').value;
+
+    if (inkType === 'c') {
+        return getColorInkPrice(pageCount);
+    }
+    else if (inkType === 'b') {
+        return getBlackAndWhiteInkPrice(pageCount);
+    }
+
+    alert('Invalid ink price');
+}
+
+// 1-100    - $0.45
+// 101-250  - $0.39
+// 250-500  - $0.35
+// 500-1000 - $0.30
+function getColorInkPrice(pageCount) {
+    if (pageCount > 500)  return .3;
+    if (pageCount > 250) return .35;
+    if (pageCount > 101) return .39;
+    return .45
+}
+
+// 1-100    - $0.12
+// 101-250  - $0.08
+// 250-500  - $0.07
+// 500-1000 - $0.06
+function getBlackAndWhiteInkPrice(pageCount) {
+    if (pageCount > 500)  return .06;
+    if (pageCount > 250) return .07;
+    if (pageCount > 101) return .08;
+    return .12
 }
 
 function updatePriceEstimate(price) {
+    if (!price) return;
     price = prettyFromatPrice(price);
     document.getElementById('price-text').innerText = `$${price}`;
 }
@@ -70,7 +130,7 @@ function buildFileListItem(id, fileName){
 
     let badge = document.createElement('span');
     badge.className = "badge badge-info badge-pill";
-    badge.innerText = "50 pages";
+    badge.innerText = `${totalNumberOfPages} pages`;
 
     listItem.append(badge);
 
@@ -79,7 +139,7 @@ function buildFileListItem(id, fileName){
 }
 
 function prettyFromatPrice(price) {
-    return price;
+    return (price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 function sanatizeString(dirtyString) {
