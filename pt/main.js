@@ -1,18 +1,18 @@
-let totalNumberOfPages = 0;
 let filePageCountQueue = [];
+let filesReadyToUpload = [];
 
 document.getElementById('modal-checkout').onclick = modalCheckout;
 document.getElementById('modal-back').onclick = modalBackClicked;
 
 function modalCheckout() {
    console.log('checkout clicked');
-   updatePriceEstimate(calculatePriceEtimate(totalNumberOfPages));
+   updatePriceEstimate(calculatePriceEtimate(getTotalNumberOfPages()));
    $('#details-modal').modal('toggle');
 }
 
 function modalBackClicked() {
    console.log('Modal back clicked');
-   updatePriceEstimate(calculatePriceEtimate(totalNumberOfPages));
+   updatePriceEstimate(calculatePriceEtimate(getTotalNumberOfPages()));
    $('#details-modal').modal('toggle');
 }
 
@@ -37,11 +37,10 @@ function dropHandler(e) {
          if (e.dataTransfer.items[i].kind === 'file') {
             var file = e.dataTransfer.items[i].getAsFile();
 
-            filePageCountQueue.push(
-               {
-                  "file": file,
-                  "index": i
-               });
+            filePageCountQueue.push({
+               "file": file,
+               "index": i
+            });
 
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
@@ -56,11 +55,25 @@ function dropHandler(e) {
 
 function readPDFFile(pdf) {
    PDFJS.getDocument({ data: pdf }).then(function (pdf) {
-      console.log(pdf.pdfInfo.numPages);
-      totalNumberOfPages = pdf.pdfInfo.numPages;
-      updateFileList(filePageCountQueue.pop(), totalNumberOfPages);
-      updatePriceEstimate(calculatePriceEtimate(totalNumberOfPages));
+      let originalPdf = filePageCountQueue.pop();
+      filesReadyToUpload.push({
+         'file' : originalPdf.file,
+         'numOfPages' : pdf.pdfInfo.numPages
+      })
+      
+      updateFileList(originalPdf, pdf.pdfInfo.numPages);
+      if (filePageCountQueue.length === 0) {
+         updatePriceEstimate(calculatePriceEtimate(getTotalNumberOfPages()));
+      }
    });
+}
+
+function getTotalNumberOfPages() {
+   return filesReadyToUpload.reduce((a, b) => {
+               return { 
+                  numOfPages: a.numOfPages + b.numOfPages 
+               };
+            }, { numOfPages : 0 }).numOfPages;
 }
 
 function dragStartHandler(e) {
