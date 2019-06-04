@@ -3,10 +3,10 @@
   <channel>
     <title>Devlog</title>
     <description>A simple blog theme powered by jekyll.</description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>https://www.therealomar.com/</link>
+    <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
     <pubDate>2019-06-03</pubDate>
-    <lastBuildDate>Mon, 03 Jun 2019 22:14:00 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jun 2019 22:40:13 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -186,8 +186,8 @@
 
 </description>
         <pubDate>2019-06-03</pubDate>
-        <link>/articles/2019-06/compression-android</link>
-        <guid isPermaLink="true">/articles/2019-06/compression-android</guid>
+        <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
+        <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
         <category>Android</category>
         
@@ -215,8 +215,8 @@
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
         <pubDate>2019-06-03</pubDate>
-        <link>/articles/2019-05/meta-post</link>
-        <guid isPermaLink="true">/articles/2019-05/meta-post</guid>
+        <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
+        <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         
         
         <category>post-1</category>
