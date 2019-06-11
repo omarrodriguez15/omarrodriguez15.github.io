@@ -5,9 +5,106 @@
     <description>A simple blog theme powered by jekyll.</description>
     <link>https://www.therealomar.com/</link>
     <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2019-06-03</pubDate>
-    <lastBuildDate>Mon, 03 Jun 2019 22:40:13 -0500</lastBuildDate>
+    <pubDate>2019-06-10</pubDate>
+    <lastBuildDate>Mon, 10 Jun 2019 22:33:49 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Git the most edited files in a project</title>
+        <description>&lt;p&gt;This post was inspired from seeing multiple bugs coming from the same file in a project in a short period of time. I could easily see all types of code smells in this particular file. So I had a hypothesis, if I could find the most edited files in the repo I would likely find the files with the most technical debt i.e. most code smells. So I created a very simple powershell script to test my hypothesis.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;a href=&quot;#solution&quot;&gt;Skip to the solution section below if you just want to see code.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;why-do-the-most-edited-files-matter-&quot;&gt;Why do the most edited files matter ?&lt;/h2&gt;
+&lt;p&gt;Why do files change? In most cases files change for two reasons, there is a bug or there are changes that are needed to support a new feature. Lots of changes in a file due to bugs is obviously a good reason to take a closer look at a file.&lt;/p&gt;
+
+&lt;p&gt;Lots of changes to a file in order to support new features is also a good reason to take a closer look at a file since it could mean that the rest of your project may be too tightly coupled to things in this file or maybe the file has too many responsibilities.&lt;/p&gt;
+
+&lt;h2 id=&quot;different-approaches-to-the-problem&quot;&gt;Different approaches to the problem&lt;/h2&gt;
+&lt;p&gt;The solution below can easily be converted into some other scripting language if needed but since powershell is cross-platform you should be able to run this on any some what modern computer. Tested both on windows and OSX&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+&lt;p&gt;This is the pretty script version you can just copy paste this into a &lt;code class=&quot;highlighter-rouge&quot;&gt;.ps1&lt;/code&gt; file and  run it.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Notice that the last command argument &lt;code class=&quot;highlighter-rouge&quot;&gt;-First 10&lt;/code&gt; can be changed to control the top results you want displayed.&lt;/li&gt;
+  &lt;li&gt;Add a &lt;code class=&quot;highlighter-rouge&quot;&gt;-#&lt;/code&gt; to the git command to control how many commits you want to run the script on. For example &lt;code class=&quot;highlighter-rouge&quot;&gt;git log --pretty=format: --name-only -50&lt;/code&gt; will only run the analysis on the last 50 commits.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;git log --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;format: --name-only | 
+&lt;span class=&quot;nb&quot;&gt;Where&lt;/span&gt;-Object &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;::IsNullOrEmpty&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  | 
+&lt;span class=&quot;nb&quot;&gt;Group-Object&lt;/span&gt;  | 
+&lt;span class=&quot;nb&quot;&gt;Sort-Object&lt;/span&gt; -Property Count -Descending | 
+&lt;span class=&quot;nb&quot;&gt;Select-Object&lt;/span&gt; -Property Count, Name -First 10&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Here is a shortened dirty one-liner version&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;git log --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;format: --name-only | ? &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;::IsNullOrEmpty&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;group&lt;/span&gt;  | &lt;span class=&quot;nb&quot;&gt;Sort-Object&lt;/span&gt; -Property Count -Descending | &lt;span class=&quot;nb&quot;&gt;select&lt;/span&gt; -Property Count, Name -First 10 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;code-breakdown&quot;&gt;Code breakdown&lt;/h2&gt;
+&lt;p&gt;Using some built-in powershell cmdlets and pipelining we transform some git text output into some useful statistics about a repository.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log --pretty=format: --name-only&lt;/code&gt; gives you the list of files changed per commit.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Where-Object { ![string]::IsNullOrEmpty($_) }&lt;/code&gt; filters out all empty lines that are used by the git output from the first command to separate commits.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Group-Object&lt;/code&gt; groups all the lines that are the same together and gives you the number of objects in each group.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Sort-Object -Property Count -Descending&lt;/code&gt; sorts the groups by the &lt;code class=&quot;highlighter-rouge&quot;&gt;count&lt;/code&gt; which is number of same files from highest to lowest.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Select-Object -Property Count, Name -First 10&lt;/code&gt; selects the first 10 objects and displays the &lt;code class=&quot;highlighter-rouge&quot;&gt;Count&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Name&lt;/code&gt; properties. (The properties are from the objects that &lt;code class=&quot;highlighter-rouge&quot;&gt;Group-Object&lt;/code&gt; has passed down the pipeline)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;some-notes-on-the-dirty-one-liner&quot;&gt;Some notes on the “Dirty one-liner”&lt;/h3&gt;
+&lt;p&gt;This one-liner is essentially the same thing as the pretty version except that it is all on one-line and uses the aliases for &lt;code class=&quot;highlighter-rouge&quot;&gt;Where-Object&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Group-Object&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;Select-Object&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;example-output&quot;&gt;Example output&lt;/h2&gt;
+&lt;p&gt;Output after running the code should be something like this :&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Count Name                            
+----- ----                            
+   33 _config.yml                     
+   16 _layouts/post.html              
+   15 README.md                       
+   13 _includes/sidebar.html   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;room-for-improvement&quot;&gt;Room for improvement&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Instead of just sorting by the number of times a file has changed sort by the number of lines in aggregate that has changed in a file.&lt;/li&gt;
+  &lt;li&gt;Maybe as a part 2 complementary type script, have a way to determine the most changed section of code maybe even narrow it down to functions or class names.&lt;/li&gt;
+  &lt;li&gt;Filter out certain projects in a repository to target analysis to a specific project.&lt;/li&gt;
+  &lt;li&gt;Filter out non bug-fix changes.&lt;/li&gt;
+  &lt;li&gt;Filter out bug-fix changes.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>2019-06-10</pubDate>
+        <link>https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</link>
+        <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</guid>
+        
+        <category>software</category>
+        
+        <category>programming</category>
+        
+        <category>git</category>
+        
+        <category>clean code</category>
+        
+        
+        <category>post-3</category>
+        
+        <category>software</category>
+        
+        <category>programming</category>
+        
+        <category>git</category>
+        
+        <category>clean code</category>
+        
+      </item>
     
       <item>
         <title>How to create a zip in Xamarin Android</title>
@@ -185,7 +282,7 @@
 &lt;p&gt;This class could probably be improved by adding an ability to skip files and file extensions as well as directories.&lt;/p&gt;
 
 </description>
-        <pubDate>2019-06-03</pubDate>
+        <pubDate>2019-06-10</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
@@ -214,7 +311,7 @@
         <title>Meta post</title>
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
-        <pubDate>2019-06-03</pubDate>
+        <pubDate>2019-06-10</pubDate>
         <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         
