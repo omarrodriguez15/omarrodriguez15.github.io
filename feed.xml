@@ -5,8 +5,8 @@
     <description>A simple blog theme powered by jekyll.</description>
     <link>https://www.therealomar.com/</link>
     <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2019-06-10</pubDate>
-    <lastBuildDate>Mon, 10 Jun 2019 22:33:49 -0500</lastBuildDate>
+    <pubDate>2019-06-12</pubDate>
+    <lastBuildDate>Wed, 12 Jun 2019 20:37:06 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -81,7 +81,7 @@
 &lt;/ul&gt;
 
 </description>
-        <pubDate>2019-06-10</pubDate>
+        <pubDate>2019-06-12</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</guid>
         
@@ -114,22 +114,22 @@
 
 &lt;p&gt;&lt;a href=&quot;#solution&quot;&gt;Skip to the solution section below if you just want to see code.&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;why-i-needed-this-functionality&quot;&gt;Why I needed this functionality?&lt;/h2&gt;
-&lt;p&gt;I am working on building an Android tool to help troubleshoot problems on a device that isn’t easily assecible. I was implementing a feature to gather important local files and folders then package them up and email them to interested parties. The packaging up of the files is important since many of the devices where the app will be used is on poor internet connections.&lt;/p&gt;
+&lt;h1 id=&quot;why-i-needed-this-functionality&quot;&gt;Why I needed this functionality?&lt;/h1&gt;
+&lt;p&gt;I am working on building an Android tool to help troubleshoot problems on a device that isn’t easily accessible. I was implementing a feature to gather important local files and folders then package them up and email them to interested parties. The compressing of the files is important since many of the devices where the app will be used will likely have poor internet connection.&lt;/p&gt;
 
-&lt;h2 id=&quot;different-approaches-to-the-problem&quot;&gt;Different approaches to the problem&lt;/h2&gt;
+&lt;h1 id=&quot;different-approaches-to-the-problem&quot;&gt;Different approaches to the problem&lt;/h1&gt;
 &lt;h3 id=&quot;the-pure-c-approach&quot;&gt;The pure C# approach&lt;/h3&gt;
 &lt;p&gt;Originally I tried looking for a generic C# solution that I could potentially make cross platform. However the &lt;code class=&quot;highlighter-rouge&quot;&gt;System.IO.Compression&lt;/code&gt; API was a bit limited. For example I can easily compresses a directory but I have no control over what gets compressed in the folder i.e. if I want to skip over specific folders the api does not allow this.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-nuget-package-approach&quot;&gt;The NuGet package approach&lt;/h3&gt;
-&lt;p&gt;Then I attempted to look for a NuGet package that would simply zip a folder for me. That lead me to the possibility of using the 7z nuget but decided to hold off on going down that path because of lack of easy to find/read documentation.&lt;/p&gt;
+&lt;p&gt;I attempted to look for a NuGet package that would simply zip a folder for me. That lead me to the possibility of using the 7z nuget but decided to hold off on going down that path because of lack of easy to find/read documentation.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-android-specific-approach&quot;&gt;The Android specific approach&lt;/h3&gt;
 &lt;p&gt;Then I attempted to find an Android specific solution, in Java, which lead me to the &lt;code class=&quot;highlighter-rouge&quot;&gt;Java.Util.Zip&lt;/code&gt; class. I found a nice example of it’s usage to compress and decompress zips. The port to C# was pretty straight forward.&lt;/p&gt;
 
-&lt;p&gt;I made some modifications like being able to skip folders as well as some refactoring for readability and file contingency issues since I am not guaranteed that the files I am compressing are not being written to as I am reading them to compress them.&lt;/p&gt;
+&lt;p&gt;I made some modifications like being able to skip folders as well as some refactoring for readability. Fixed some file contingency issues since I am not guaranteed that the files I am compressing will not be written to as I am reading them to compress them.&lt;/p&gt;
 
-&lt;h2 id=&quot;example-usage-of-solution&quot;&gt;Example usage of solution&lt;/h2&gt;
+&lt;h3 id=&quot;example-usage-of-solution&quot;&gt;Example usage of solution&lt;/h3&gt;
 &lt;p&gt;Here is an example of a simple usage of the solution. Notice the destination of the zip can be anywhere. The last parameter can be an empty set if you don’t want to exclude any folders.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
@@ -279,10 +279,9 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;room-for-improvement&quot;&gt;Room for improvement&lt;/h2&gt;
-&lt;p&gt;This class could probably be improved by adding an ability to skip files and file extensions as well as directories.&lt;/p&gt;
-
+&lt;p&gt;This class could be improved by adding an ability to skip files and file extensions.&lt;/p&gt;
 </description>
-        <pubDate>2019-06-10</pubDate>
+        <pubDate>2019-06-12</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
@@ -311,7 +310,7 @@
         <title>Meta post</title>
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
-        <pubDate>2019-06-10</pubDate>
+        <pubDate>2019-06-12</pubDate>
         <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         

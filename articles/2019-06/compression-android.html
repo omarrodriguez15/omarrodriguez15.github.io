@@ -170,22 +170,22 @@
 
 <p><a href="#solution">Skip to the solution section below if you just want to see code.</a></p>
 
-<h2 id="why-i-needed-this-functionality">Why I needed this functionality?</h2>
-<p>I am working on building an Android tool to help troubleshoot problems on a device that isn’t easily assecible. I was implementing a feature to gather important local files and folders then package them up and email them to interested parties. The packaging up of the files is important since many of the devices where the app will be used is on poor internet connections.</p>
+<h1 id="why-i-needed-this-functionality">Why I needed this functionality?</h1>
+<p>I am working on building an Android tool to help troubleshoot problems on a device that isn’t easily accessible. I was implementing a feature to gather important local files and folders then package them up and email them to interested parties. The compressing of the files is important since many of the devices where the app will be used will likely have poor internet connection.</p>
 
-<h2 id="different-approaches-to-the-problem">Different approaches to the problem</h2>
+<h1 id="different-approaches-to-the-problem">Different approaches to the problem</h1>
 <h3 id="the-pure-c-approach">The pure C# approach</h3>
 <p>Originally I tried looking for a generic C# solution that I could potentially make cross platform. However the <code class="highlighter-rouge">System.IO.Compression</code> API was a bit limited. For example I can easily compresses a directory but I have no control over what gets compressed in the folder i.e. if I want to skip over specific folders the api does not allow this.</p>
 
 <h3 id="the-nuget-package-approach">The NuGet package approach</h3>
-<p>Then I attempted to look for a NuGet package that would simply zip a folder for me. That lead me to the possibility of using the 7z nuget but decided to hold off on going down that path because of lack of easy to find/read documentation.</p>
+<p>I attempted to look for a NuGet package that would simply zip a folder for me. That lead me to the possibility of using the 7z nuget but decided to hold off on going down that path because of lack of easy to find/read documentation.</p>
 
 <h3 id="the-android-specific-approach">The Android specific approach</h3>
 <p>Then I attempted to find an Android specific solution, in Java, which lead me to the <code class="highlighter-rouge">Java.Util.Zip</code> class. I found a nice example of it’s usage to compress and decompress zips. The port to C# was pretty straight forward.</p>
 
-<p>I made some modifications like being able to skip folders as well as some refactoring for readability and file contingency issues since I am not guaranteed that the files I am compressing are not being written to as I am reading them to compress them.</p>
+<p>I made some modifications like being able to skip folders as well as some refactoring for readability. Fixed some file contingency issues since I am not guaranteed that the files I am compressing will not be written to as I am reading them to compress them.</p>
 
-<h2 id="example-usage-of-solution">Example usage of solution</h2>
+<h3 id="example-usage-of-solution">Example usage of solution</h3>
 <p>Here is an example of a simple usage of the solution. Notice the destination of the zip can be anywhere. The last parameter can be an empty set if you don’t want to exclude any folders.</p>
 
 <figure class="highlight"><pre><code class="language-c#" data-lang="c#"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
@@ -335,8 +335,7 @@
 <span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <h2 id="room-for-improvement">Room for improvement</h2>
-<p>This class could probably be improved by adding an ability to skip files and file extensions as well as directories.</p>
-
+<p>This class could be improved by adding an ability to skip files and file extensions.</p>
 
   </article>
 </div>
