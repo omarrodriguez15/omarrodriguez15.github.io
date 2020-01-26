@@ -5,8 +5,8 @@
     <description>A simple blog theme powered by jekyll.</description>
     <link>https://www.therealomar.com/</link>
     <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2020-01-25</pubDate>
-    <lastBuildDate>Sat, 25 Jan 2020 13:31:30 -0600</lastBuildDate>
+    <pubDate>2020-01-26</pubDate>
+    <lastBuildDate>Sun, 26 Jan 2020 15:46:33 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -15,7 +15,8 @@
 
 &lt;!--more--&gt;
 
-&lt;p&gt;&lt;a href=&quot;#conclusion&quot;&gt;Skip to the conclusion section below if you want.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Skip to the  &lt;a href=&quot;#conclusion&quot;&gt;conclusion here.&lt;/a&gt;&lt;br /&gt;
+See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;why-read-more&quot;&gt;Why read more?&lt;/h1&gt;
 &lt;p&gt;I’ve always loved going to bookstores to flip through coffee table books, browse through fiction book covers, then taking home some “bargain buys” I just had to have. The problem always was I lacked motivation and lost interest in the books after the first day or two of reading.&lt;/p&gt;
@@ -68,8 +69,32 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h2 id=&quot;books&quot;&gt;Books&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+restaurant+at+the+end+of+the+universe&quot;&gt;The restaurant at the end of the universe&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Life+the+universe+and+everything&quot;&gt;Life the universe and everything&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=So+long+and+thanks+for+all+the+fish&quot;&gt;So long and thanks for all the fish&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Mostly+harmless&quot;&gt;Mostly harmless&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+7+habits+of+highly+effective+people&quot;&gt;The 7 habits of highly effective people&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+New+Father%3A+A+Dad%27s+Guide+to+the+First+Year&quot;&gt;The New Father: A Dad’s Guide to the First Year&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=This+book+loves+you&quot;&gt;This book loves you&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+definitive+book+of+body+language&quot;&gt;The definitive book of body language&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Structure+and+interpretation+of+computer+programs&quot;&gt;Structure and interpretation of computer programs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Metamorphosis&quot;&gt;Metamorphosis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=A+humans+guide+to+machine+intelligence&quot;&gt;A humans guide to machine intelligence&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=In+the+beginning+was+the+command+line&quot;&gt;In the beginning was the command line&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+time+machine&quot;&gt;The time machine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Hyperbole+and+a+half&quot;&gt;Hyperbole and a half&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Harry+Potter+and+the+sourcer+stone&quot;&gt;Harry Potter and the sourcer stone&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Clean+agile&quot;&gt;Clean agile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Harry+Potter+and+the+champer+and+secret&quot;&gt;Harry Potter and the champer and secret&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+incredible+hulk%3A+stalker+from+the+stars&quot;&gt;The incredible hulk: stalker from the stars&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Head+in+the+cloud&quot;&gt;Head in the cloud&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=Quiditch+through+the+ages&quot;&gt;Quiditch through the ages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+art+of+war&quot;&gt;The art of war&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
-        <pubDate>2020-01-25</pubDate>
+        <pubDate>2020-01-26</pubDate>
         <link>https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</guid>
         
@@ -152,7 +177,7 @@
 &lt;/ul&gt;
 
 </description>
-        <pubDate>2020-01-25</pubDate>
+        <pubDate>2020-01-26</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</guid>
         
@@ -352,7 +377,7 @@
 &lt;h2 id=&quot;room-for-improvement&quot;&gt;Room for improvement&lt;/h2&gt;
 &lt;p&gt;This class could be improved by adding an ability to skip files and file extensions.&lt;/p&gt;
 </description>
-        <pubDate>2020-01-25</pubDate>
+        <pubDate>2020-01-26</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
@@ -381,7 +406,7 @@
         <title>Meta post</title>
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
-        <pubDate>2020-01-25</pubDate>
+        <pubDate>2020-01-26</pubDate>
         <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         
