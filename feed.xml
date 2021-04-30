@@ -5,9 +5,233 @@
     <description>A simple blog theme powered by jekyll.</description>
     <link>https://www.therealomar.com/</link>
     <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2020-01-26</pubDate>
-    <lastBuildDate>Sun, 26 Jan 2020 15:46:33 -0600</lastBuildDate>
+    <pubDate>2021-04-30</pubDate>
+    <lastBuildDate>Fri, 30 Apr 2021 15:46:35 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Increasing my command line efficiency</title>
+        <description>&lt;p&gt;My command line environment is where I spend a big chunk of my time as a developer. I have noticed a big boost in efficiency by taking some time to customize my command line environment and powershell profile.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;a href=&quot;#my-powershell-profile&quot;&gt;Skip to the meat and potatoes of this post, the My powershell profile section, here.&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#setup&quot;&gt;Skip to the setup section here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;tools-used&quot;&gt;Tools used&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://conemu.github.io/&quot;&gt;ConEmu&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;
+ConEmu is the terminal I use. I would prefer to use Windows Terminal but my work computer is not on a new enough build of Windows 10 to use it :(. Main reason I picked ConEmu is because it seemed to be the base that a lot of popular terminals are built on top of and it allows tabbing of shells. ConEmu is highly customizable and tons of features but I don’t take advantage of much of it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-5.1&quot;&gt;Powershell&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;
+For my shell I use Powershell 5.1, the default version on Windows 10. I have become very comftorable with powershell and find automating things a breeze and fun with powershell.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/dahlbyk/posh-git&quot;&gt;Posh-git&lt;/a&gt;&lt;/strong&gt; &lt;br /&gt;
+Posh-git is a must have powershell module for git. It provides a bunch of really important info at a glance in the command line when in a git repo.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Side note related to must have git add-ons is the one and only git GUI I like. It is a nice lightweight &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph&quot;&gt;VsCode extension called GitGraph&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+&lt;h3 id=&quot;conemu&quot;&gt;ConEmu&lt;/h3&gt;
+&lt;p&gt;Download and install ConEmu &lt;a href=&quot;https://conemu.github.io/&quot;&gt;here.&lt;/a&gt; First thing I did was to modify one of the Predefined tasks. Speifically the &lt;code class=&quot;highlighter-rouge&quot;&gt;{Shells::Powershell (Admin)}&lt;/code&gt; task and set it as the startup task. The modification and setting of startup task is all done in the settings. This is what my startup task looks like.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;powershell.exe -new_console:a
+powershell.exe -new_console:s50V
+powershell.exe -new_console:as50H&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;What I have here is a base command &lt;code class=&quot;highlighter-rouge&quot;&gt;powershell.exe -new_console:*&lt;/code&gt; which creates a new powershell shell with some addtional arguments. The first line uses the &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; argument to create the shell as admin. The second line uses &lt;code class=&quot;highlighter-rouge&quot;&gt;s50V&lt;/code&gt; which translates to split the current panel (&lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;) by 50% (&lt;code class=&quot;highlighter-rouge&quot;&gt;50&lt;/code&gt;) vertically (&lt;code class=&quot;highlighter-rouge&quot;&gt;V&lt;/code&gt;). The third line uses &lt;code class=&quot;highlighter-rouge&quot;&gt;as50H&lt;/code&gt; which translates to run as admin (&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;) split the current panel (&lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;) by 50% (&lt;code class=&quot;highlighter-rouge&quot;&gt;50&lt;/code&gt;) horizontally (&lt;code class=&quot;highlighter-rouge&quot;&gt;H&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;The end result can be seen in the main image above.&lt;/p&gt;
+
+&lt;h3 id=&quot;posh-git&quot;&gt;Posh-git&lt;/h3&gt;
+&lt;p&gt;The github readme has really good &lt;a href=&quot;https://github.com/dahlbyk/posh-git&quot;&gt;installation instruction&lt;/a&gt; as well as alternatives installation/setup options to what I will provide below.&lt;/p&gt;
+
+&lt;p&gt;Run the following 3 commands. The following installs via powershell gallery, imports the module, and then adds the module to your powershell profile.
+Install it via powershell gallery.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+Import-Module posh-git
+Add-PoshGitToProfile -AllHosts&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;NOTE: If you’re asked to trust packages from the PowerShell Gallery, answer yes to continue installation of posh-git&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;my-powershell-profile&quot;&gt;My powershell profile&lt;/h3&gt;
+&lt;p&gt;Customizing my powershell profile is really where I have increased my dev workflow efficiency. The powershell profile is essentially just a powershell script that runs when you open a new powershell shell. What I have done is created a bunch of little cmdlets, basically global functions, I can run at anytime in any powershell shell.&lt;/p&gt;
+
+&lt;p&gt;To get started what I do is run &lt;code class=&quot;highlighter-rouge&quot;&gt;$PROFILE.CurrentUserAllHosts&lt;/code&gt; this will tell you the file path for your profile. Go ahead and open it in your favorite text editor and if it doesn’t exists create it.&lt;/p&gt;
+
+&lt;h4 id=&quot;switching-directories-like-a-ninja&quot;&gt;Switching directories like a ninja&lt;/h4&gt;
+&lt;p&gt;Something I do a lot is switch between code repositories. A lot of the code repos I work with have long names which means a lot more keystores than I would like just to switch between repo directories. So I created some aliases. Here is an example of what I put in my &lt;code class=&quot;highlighter-rouge&quot;&gt;profile.ps1&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Set&lt;/span&gt;-ShuttleCodeLocation &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;Set-Location &lt;/span&gt;D:\code\space-shuttle-controller
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Use New-Alias over Set-Alias https://stackoverflow.com/a/48093733&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;New-Alias&lt;/span&gt; -Name ShuttleCode -Value &lt;span class=&quot;nb&quot;&gt;Set&lt;/span&gt;-ShuttleCodeLocation&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now any powershell session I start I can just type &lt;code class=&quot;highlighter-rouge&quot;&gt;ShuttleCode&lt;/code&gt; and it will change my directory to my shuttle code repo’s directory. To save even more keystrokes you can take advantage of powershell auto complete and just type &lt;code class=&quot;highlighter-rouge&quot;&gt;shu&lt;/code&gt; followed by &lt;code class=&quot;highlighter-rouge&quot;&gt;TAB&lt;/code&gt; and powershell should auto complete to &lt;code class=&quot;highlighter-rouge&quot;&gt;ShuttleCode&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;clean-a-project-folder&quot;&gt;Clean a project folder&lt;/h4&gt;
+&lt;p&gt;Every now and then we want to clean up all bin and obj folders because something isn’t working correctly.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;cm&quot;&gt;&amp;lt;#
+   This will recursively remove all bin and obj folders in the current directory.
+#&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;rmBinAndObjs &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Commented out is the shorthand version&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ls -include bin,obj -r | %{rm -r -Force }&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;Get-ChildItem&lt;/span&gt; -Include bin,obj -Recurse | &lt;span class=&quot;k&quot;&gt;ForEach&lt;/span&gt;-Object &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Remove-Item&lt;/span&gt; -Recurse -Force &lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;.FullName &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;some-git-cmdlets&quot;&gt;Some git cmdlets&lt;/h4&gt;
+&lt;p&gt;Yes, I know I could probably do this with git aliases but for non trivial git commands I feel less constrained with powershell.&lt;/p&gt;
+
+&lt;p&gt;This first set of cmdlets is useful for working with those files that are checked into git, and get modified locally but we don’t want them showing up in our local set of modified files in git. Usually this is useful with config files.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;Hide-FileFromGit &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CmdletBinding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$FileName&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Don't show file in changes&lt;/span&gt;
+    git update-index --skip-worktree &lt;span class=&quot;nv&quot;&gt;$FileName&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;Show-FilesHiddenFromGit &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CmdletBinding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$FileName&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# List files you are skipping&lt;/span&gt;
+    git &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;-files -v &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sls&lt;/span&gt; ^S
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;Undo-HideFileFromGit &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CmdletBinding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$FileName&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Undo skip file&lt;/span&gt;
+    git update-index --no-skip-worktree &lt;span class=&quot;nv&quot;&gt;$FileName&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This cmdlet is a convenient way to create a new branch from latest version of master and publish it to the remote repo. You may notice the &lt;code class=&quot;highlighter-rouge&quot;&gt;[Parameter(Mandatory)]&lt;/code&gt; attribute on the &lt;code class=&quot;highlighter-rouge&quot;&gt;$NewBranchName&lt;/code&gt; parameter. This is a really cool feature that makes it so that if you run this cmdlet without providing that parameter powershell will auto prompt you for the paramter value before proceeding.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;Publish-GitBranch &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CmdletBinding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()]&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Parameter&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Mandatory&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NewBranchName&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$BaseBranch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'master'&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+   &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$currentBranch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; git rev-parse --abbrev-ref HEAD
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LASTEXITCODE&lt;/span&gt; -ne 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;You must be in a Git repository&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;nb&quot;&gt;Write-Output&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git checkout &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$BaseBranch&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+      git checkout &lt;span class=&quot;nv&quot;&gt;$BaseBranch&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;Write-Output&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git pull&quot;&lt;/span&gt;
+      git pull
+      &lt;span class=&quot;nb&quot;&gt;Write-Output&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git checkout -b &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NewBranchName&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+      git checkout -b &lt;span class=&quot;nv&quot;&gt;$NewBranchName&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;Write-Output&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;git push --set-upstream origin &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NewBranchName&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+      git push --set-upstream origin &lt;span class=&quot;nv&quot;&gt;$NewBranchName&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;finally&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I have a lot more stuff in my powershell profile but is essentially just variations on what I’ve already shown above but more tailored to my specific work environment.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;I found the majority of my increase in efficency came in customizing my powershell profile to automate a bunch of repititve tasks that saved me keystrokes and little google searches for commands throughout the day. Using something like conemu over powershell I think makes the screen more pleasing to look at, also the multiple shells at a glance using split panels is very useful in many scenarios. Using posh-git is just a must have for anyone using git on windows I would take that and powershell any day over the windows git bash terminal.&lt;/p&gt;
+
+&lt;p&gt;If you have any comments or questions reach out on Twitter &lt;a href=&quot;https://twitter.com/omarr2d2&quot;&gt;@Omarr2d2&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>2021-04-30</pubDate>
+        <link>https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</link>
+        <guid isPermaLink="true">https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</guid>
+        
+        
+        <category>post-5</category>
+        
+        <category>development</category>
+        
+        <category>dev</category>
+        
+      </item>
     
       <item>
         <title>How I finally achieved a meaningful new years resolution</title>
@@ -94,7 +318,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
   &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+art+of+war&quot;&gt;The art of war&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>2020-01-26</pubDate>
+        <pubDate>2021-04-30</pubDate>
         <link>https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</guid>
         
@@ -177,7 +401,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;/ul&gt;
 
 </description>
-        <pubDate>2020-01-26</pubDate>
+        <pubDate>2021-04-30</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</guid>
         
@@ -377,7 +601,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;h2 id=&quot;room-for-improvement&quot;&gt;Room for improvement&lt;/h2&gt;
 &lt;p&gt;This class could be improved by adding an ability to skip files and file extensions.&lt;/p&gt;
 </description>
-        <pubDate>2020-01-26</pubDate>
+        <pubDate>2021-04-30</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
@@ -406,7 +630,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
         <title>Meta post</title>
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
-        <pubDate>2020-01-26</pubDate>
+        <pubDate>2021-04-30</pubDate>
         <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         
