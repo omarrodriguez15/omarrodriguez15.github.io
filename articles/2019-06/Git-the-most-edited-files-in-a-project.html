@@ -179,10 +179,10 @@
 <p>The solution below can easily be converted into some other scripting language if needed but since powershell is cross-platform you should be able to run this on any some what modern computer. Tested both on windows and OSX</p>
 
 <h2 id="solution">Solution</h2>
-<p>This is the pretty script version you can just copy paste this into a <code class="highlighter-rouge">.ps1</code> file and  run it.</p>
+<p>This is the pretty script version you can just copy paste this into a <code class="language-plaintext highlighter-rouge">.ps1</code> file and  run it.</p>
 <ul>
-  <li>Notice that the last command argument <code class="highlighter-rouge">-First 10</code> can be changed to control the top results you want displayed.</li>
-  <li>Add a <code class="highlighter-rouge">-#</code> to the git command to control how many commits you want to run the script on. For example <code class="highlighter-rouge">git log --pretty=format: --name-only -50</code> will only run the analysis on the last 50 commits.</li>
+  <li>Notice that the last command argument <code class="language-plaintext highlighter-rouge">-First 10</code> can be changed to control the top results you want displayed.</li>
+  <li>Add a <code class="language-plaintext highlighter-rouge">-#</code> to the git command to control how many commits you want to run the script on. For example <code class="language-plaintext highlighter-rouge">git log --pretty=format: --name-only -50</code> will only run the analysis on the last 50 commits.</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
@@ -190,33 +190,35 @@
 3
 4
 5
-</pre></td><td class="code"><pre>git log --pretty<span class="o">=</span>format: --name-only | 
-<span class="nb">Where</span>-Object <span class="o">{</span> <span class="o">![</span><span class="kt">string</span><span class="o">]</span>::IsNullOrEmpty<span class="o">(</span><span class="nv">$_</span><span class="o">)</span> <span class="o">}</span>  | 
-<span class="nb">Group-Object</span>  | 
-<span class="nb">Sort-Object</span> -Property Count -Descending | 
-<span class="nb">Select-Object</span> -Property Count, Name -First 10</pre></td></tr></tbody></table></code></pre></figure>
+</pre></td><td class="code"><pre><span class="n">git</span><span class="w"> </span><span class="nx">log</span><span class="w"> </span><span class="nt">--pretty</span><span class="o">=</span><span class="n">format:</span><span class="w"> </span><span class="nt">--name-only</span><span class="w"> </span><span class="o">|</span><span class="w"> 
+</span><span class="n">Where-Object</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">!</span><span class="p">[</span><span class="n">string</span><span class="p">]::</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="bp">$_</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="o">|</span><span class="w"> 
+</span><span class="n">Group-Object</span><span class="w">  </span><span class="o">|</span><span class="w"> 
+</span><span class="n">Sort-Object</span><span class="w"> </span><span class="nt">-Property</span><span class="w"> </span><span class="nx">Count</span><span class="w"> </span><span class="nt">-Descending</span><span class="w"> </span><span class="o">|</span><span class="w"> 
+</span><span class="n">Select-Object</span><span class="w"> </span><span class="nt">-Property</span><span class="w"> </span><span class="nx">Count</span><span class="p">,</span><span class="w"> </span><span class="nx">Name</span><span class="w"> </span><span class="nt">-First</span><span class="w"> </span><span class="nx">10</span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
 <p>Here is a shortened dirty one-liner version</p>
 
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
-</pre></td><td class="code"><pre>git log --pretty<span class="o">=</span>format: --name-only | ? <span class="o">{</span> <span class="o">![</span><span class="kt">string</span><span class="o">]</span>::IsNullOrEmpty<span class="o">(</span><span class="nv">$_</span><span class="o">)</span> <span class="o">}</span> | <span class="nb">group</span>  | <span class="nb">Sort-Object</span> -Property Count -Descending | <span class="nb">select</span> -Property Count, Name -First 10 </pre></td></tr></tbody></table></code></pre></figure>
+</pre></td><td class="code"><pre><span class="n">git</span><span class="w"> </span><span class="nx">log</span><span class="w"> </span><span class="nt">--pretty</span><span class="o">=</span><span class="n">format:</span><span class="w"> </span><span class="nt">--name-only</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nf">?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">!</span><span class="p">[</span><span class="n">string</span><span class="p">]::</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="bp">$_</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">group</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Sort-Object</span><span class="w"> </span><span class="nt">-Property</span><span class="w"> </span><span class="nx">Count</span><span class="w"> </span><span class="nt">-Descending</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="nt">-Property</span><span class="w"> </span><span class="nx">Count</span><span class="p">,</span><span class="w"> </span><span class="nx">Name</span><span class="w"> </span><span class="nt">-First</span><span class="w"> </span><span class="nx">10</span><span class="w"> </span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
 <h2 id="code-breakdown">Code breakdown</h2>
 <p>Using some built-in powershell cmdlets and pipelining we transform some git text output into some useful statistics about a repository.</p>
 <ol>
-  <li><code class="highlighter-rouge">git log --pretty=format: --name-only</code> gives you the list of files changed per commit.</li>
-  <li><code class="highlighter-rouge">Where-Object { ![string]::IsNullOrEmpty($_) }</code> filters out all empty lines that are used by the git output from the first command to separate commits.</li>
-  <li><code class="highlighter-rouge">Group-Object</code> groups all the lines that are the same together and gives you the number of objects in each group.</li>
-  <li><code class="highlighter-rouge">Sort-Object -Property Count -Descending</code> sorts the groups by the <code class="highlighter-rouge">count</code> which is number of same files from highest to lowest.</li>
-  <li><code class="highlighter-rouge">Select-Object -Property Count, Name -First 10</code> selects the first 10 objects and displays the <code class="highlighter-rouge">Count</code> and <code class="highlighter-rouge">Name</code> properties. (The properties are from the objects that <code class="highlighter-rouge">Group-Object</code> has passed down the pipeline)</li>
+  <li><code class="language-plaintext highlighter-rouge">git log --pretty=format: --name-only</code> gives you the list of files changed per commit.</li>
+  <li><code class="language-plaintext highlighter-rouge">Where-Object { ![string]::IsNullOrEmpty($_) }</code> filters out all empty lines that are used by the git output from the first command to separate commits.</li>
+  <li><code class="language-plaintext highlighter-rouge">Group-Object</code> groups all the lines that are the same together and gives you the number of objects in each group.</li>
+  <li><code class="language-plaintext highlighter-rouge">Sort-Object -Property Count -Descending</code> sorts the groups by the <code class="language-plaintext highlighter-rouge">count</code> which is number of same files from highest to lowest.</li>
+  <li><code class="language-plaintext highlighter-rouge">Select-Object -Property Count, Name -First 10</code> selects the first 10 objects and displays the <code class="language-plaintext highlighter-rouge">Count</code> and <code class="language-plaintext highlighter-rouge">Name</code> properties. (The properties are from the objects that <code class="language-plaintext highlighter-rouge">Group-Object</code> has passed down the pipeline)</li>
 </ol>
 
 <h3 id="some-notes-on-the-dirty-one-liner">Some notes on the “Dirty one-liner”</h3>
-<p>This one-liner is essentially the same thing as the pretty version except that it is all on one-line and uses the aliases for <code class="highlighter-rouge">Where-Object</code>, <code class="highlighter-rouge">Group-Object</code>, and <code class="highlighter-rouge">Select-Object</code>.</p>
+<p>This one-liner is essentially the same thing as the pretty version except that it is all on one-line and uses the aliases for <code class="language-plaintext highlighter-rouge">Where-Object</code>, <code class="language-plaintext highlighter-rouge">Group-Object</code>, and <code class="language-plaintext highlighter-rouge">Select-Object</code>.</p>
 
 <h2 id="example-output">Example output</h2>
 <p>Output after running the code should be something like this :</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Count Name                            
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Count Name                            
 ----- ----                            
    33 _config.yml                     
    16 _layouts/post.html              
