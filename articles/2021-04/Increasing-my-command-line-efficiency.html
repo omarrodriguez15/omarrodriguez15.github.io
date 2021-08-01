@@ -167,7 +167,7 @@
       <span class="read-time" title="Estimated read time">
   
   
-    7 mins read
+    9 mins read
   
 </span>
 
@@ -198,16 +198,17 @@ Posh-git is a must have powershell module for git. It provides a bunch of really
 
 <h2 id="setup">Setup</h2>
 <h3 id="conemu">ConEmu</h3>
-<p>Download and install ConEmu <a href="https://conemu.github.io/">here.</a> First thing I did was to modify one of the Predefined tasks. Speifically the <code class="highlighter-rouge">{Shells::Powershell (Admin)}</code> task and set it as the startup task. The modification and setting of startup task is all done in the settings. This is what my startup task looks like.</p>
+<p>Download and install ConEmu <a href="https://conemu.github.io/">here.</a> First thing I did was to modify one of the Predefined tasks. Speifically the <code class="language-plaintext highlighter-rouge">{Shells::Powershell (Admin)}</code> task and set it as the startup task. The modification and setting of startup task is all done in the settings. This is what my startup task looks like.</p>
 
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="code"><pre>powershell.exe -new_console:a
-powershell.exe -new_console:s50V
-powershell.exe -new_console:as50H</pre></td></tr></tbody></table></code></pre></figure>
+</pre></td><td class="code"><pre><span class="n">powershell.exe</span><span class="w"> </span><span class="nt">-new_console</span><span class="p">:</span><span class="nx">a</span><span class="w">
+</span><span class="n">powershell.exe</span><span class="w"> </span><span class="nt">-new_console</span><span class="p">:</span><span class="nx">s50V</span><span class="w">
+</span><span class="n">powershell.exe</span><span class="w"> </span><span class="nt">-new_console</span><span class="p">:</span><span class="nx">as50H</span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
-<p>What I have here is a base command <code class="highlighter-rouge">powershell.exe -new_console:*</code> which creates a new powershell shell with some addtional arguments. The first line uses the <code class="highlighter-rouge">a</code> argument to create the shell as admin. The second line uses <code class="highlighter-rouge">s50V</code> which translates to split the current panel (<code class="highlighter-rouge">s</code>) by 50% (<code class="highlighter-rouge">50</code>) vertically (<code class="highlighter-rouge">V</code>). The third line uses <code class="highlighter-rouge">as50H</code> which translates to run as admin (<code class="highlighter-rouge">a</code>) split the current panel (<code class="highlighter-rouge">s</code>) by 50% (<code class="highlighter-rouge">50</code>) horizontally (<code class="highlighter-rouge">H</code>).</p>
+<p>What I have here is a base command <code class="language-plaintext highlighter-rouge">powershell.exe -new_console:*</code> which creates a new powershell shell with some addtional arguments. The first line uses the <code class="language-plaintext highlighter-rouge">a</code> argument to create the shell as admin. The second line uses <code class="language-plaintext highlighter-rouge">s50V</code> which translates to split the current panel (<code class="language-plaintext highlighter-rouge">s</code>) by 50% (<code class="language-plaintext highlighter-rouge">50</code>) vertically (<code class="language-plaintext highlighter-rouge">V</code>). The third line uses <code class="language-plaintext highlighter-rouge">as50H</code> which translates to run as admin (<code class="language-plaintext highlighter-rouge">a</code>) split the current panel (<code class="language-plaintext highlighter-rouge">s</code>) by 50% (<code class="language-plaintext highlighter-rouge">50</code>) horizontally (<code class="language-plaintext highlighter-rouge">H</code>).</p>
 
 <p>The end result can be seen in the main image above.</p>
 
@@ -220,9 +221,10 @@ Install it via powershell gallery.</p>
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="code"><pre>PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
-Import-Module posh-git
-Add-PoshGitToProfile -AllHosts</pre></td></tr></tbody></table></code></pre></figure>
+</pre></td><td class="code"><pre><span class="n">PowerShellGet\Install-Module</span><span class="w"> </span><span class="nx">posh-git</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="w"> </span><span class="nt">-Force</span><span class="w">
+</span><span class="n">Import-Module</span><span class="w"> </span><span class="nx">posh-git</span><span class="w">
+</span><span class="n">Add-PoshGitToProfile</span><span class="w"> </span><span class="nt">-AllHosts</span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
 <blockquote>
   <p>NOTE: If you’re asked to trust packages from the PowerShell Gallery, answer yes to continue installation of posh-git</p>
@@ -231,10 +233,10 @@ Add-PoshGitToProfile -AllHosts</pre></td></tr></tbody></table></code></pre></fig
 <h3 id="my-powershell-profile">My powershell profile</h3>
 <p>Customizing my powershell profile is really where I have increased my dev workflow efficiency. The powershell profile is essentially just a powershell script that runs when you open a new powershell shell. What I have done is created a bunch of little cmdlets, basically global functions, I can run at anytime in any powershell shell.</p>
 
-<p>To get started what I do is run <code class="highlighter-rouge">$PROFILE.CurrentUserAllHosts</code> this will tell you the file path for your profile. Go ahead and open it in your favorite text editor and if it doesn’t exists create it.</p>
+<p>To get started what I do is run <code class="language-plaintext highlighter-rouge">$PROFILE.CurrentUserAllHosts</code> this will tell you the file path for your profile. Go ahead and open it in your favorite text editor and if it doesn’t exists create it.</p>
 
 <h4 id="switching-directories-like-a-ninja">Switching directories like a ninja</h4>
-<p>Something I do a lot is switch between code repositories. A lot of the code repos I work with have long names which means a lot more keystores than I would like just to switch between repo directories. So I created some aliases. Here is an example of what I put in my <code class="highlighter-rouge">profile.ps1</code>:</p>
+<p>Something I do a lot is switch between code repositories. A lot of the code repos I work with have long names which means a lot more keystores than I would like just to switch between repo directories. So I created some aliases. Here is an example of what I put in my <code class="language-plaintext highlighter-rouge">profile.ps1</code>:</p>
 
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
@@ -242,14 +244,15 @@ Add-PoshGitToProfile -AllHosts</pre></td></tr></tbody></table></code></pre></fig
 4
 5
 6
-</pre></td><td class="code"><pre><span class="k">function </span><span class="nb">Set</span>-ShuttleCodeLocation <span class="o">{</span>
-    <span class="nb">Set-Location </span>D:\code\space-shuttle-controller
-<span class="o">}</span>
+</pre></td><td class="code"><pre><span class="kr">function</span><span class="w"> </span><span class="nf">Set-ShuttleCodeLocation</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">Set-Location</span><span class="w"> </span><span class="nx">D:\code\space-shuttle-controller</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<span class="c1"># Use New-Alias over Set-Alias https://stackoverflow.com/a/48093733</span>
-<span class="nb">New-Alias</span> -Name ShuttleCode -Value <span class="nb">Set</span>-ShuttleCodeLocation</pre></td></tr></tbody></table></code></pre></figure>
+</span><span class="c"># Use New-Alias over Set-Alias https://stackoverflow.com/a/48093733</span><span class="w">
+</span><span class="n">New-Alias</span><span class="w"> </span><span class="nt">-Name</span><span class="w"> </span><span class="nx">ShuttleCode</span><span class="w"> </span><span class="nt">-Value</span><span class="w"> </span><span class="nx">Set-ShuttleCodeLocation</span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
-<p>Now any powershell session I start I can just type <code class="highlighter-rouge">ShuttleCode</code> and it will change my directory to my shuttle code repo’s directory. To save even more keystrokes you can take advantage of powershell auto complete and just type <code class="highlighter-rouge">shu</code> followed by <code class="highlighter-rouge">TAB</code> and powershell should auto complete to <code class="highlighter-rouge">ShuttleCode</code>.</p>
+<p>Now any powershell session I start I can just type <code class="language-plaintext highlighter-rouge">ShuttleCode</code> and it will change my directory to my shuttle code repo’s directory. To save even more keystrokes you can take advantage of powershell auto complete and just type <code class="language-plaintext highlighter-rouge">shu</code> followed by <code class="language-plaintext highlighter-rouge">TAB</code> and powershell should auto complete to <code class="language-plaintext highlighter-rouge">ShuttleCode</code>.</p>
 
 <h4 id="clean-a-project-folder">Clean a project folder</h4>
 <p>Every now and then we want to clean up all bin and obj folders because something isn’t working correctly.</p>
@@ -264,12 +267,13 @@ Add-PoshGitToProfile -AllHosts</pre></td></tr></tbody></table></code></pre></fig
 8
 </pre></td><td class="code"><pre><span class="cm">&lt;#
    This will recursively remove all bin and obj folders in the current directory.
-#&gt;</span>
-<span class="k">function </span>rmBinAndObjs <span class="o">{</span>
-    <span class="c1"># Commented out is the shorthand version</span>
-    <span class="c1"># ls -include bin,obj -r | %{rm -r -Force }</span>
-    <span class="nb">Get-ChildItem</span> -Include bin,obj -Recurse | <span class="k">ForEach</span>-Object <span class="o">{</span> <span class="nb">Remove-Item</span> -Recurse -Force <span class="nv">$_</span>.FullName <span class="o">}</span>
-<span class="o">}</span></pre></td></tr></tbody></table></code></pre></figure>
+#&gt;</span><span class="w">
+</span><span class="kr">function</span><span class="w"> </span><span class="nf">rmBinAndObjs</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="c"># Commented out is the shorthand version</span><span class="w">
+    </span><span class="c"># ls -include bin,obj -r | %{rm -r -Force }</span><span class="w">
+    </span><span class="n">Get-ChildItem</span><span class="w"> </span><span class="nt">-Include</span><span class="w"> </span><span class="nx">bin</span><span class="p">,</span><span class="nx">obj</span><span class="w"> </span><span class="nt">-Recurse</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ForEach-Object</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Remove-Item</span><span class="w"> </span><span class="nt">-Recurse</span><span class="w"> </span><span class="nt">-Force</span><span class="w"> </span><span class="bp">$_</span><span class="o">.</span><span class="nf">FullName</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
 <h4 id="some-git-cmdlets">Some git cmdlets</h4>
 <p>Yes, I know I could probably do this with git aliases but for non trivial git commands I feel less constrained with powershell.</p>
@@ -303,35 +307,36 @@ Add-PoshGitToProfile -AllHosts</pre></td></tr></tbody></table></code></pre></fig
 25
 26
 27
-</pre></td><td class="code"><pre><span class="k">function </span>Hide-FileFromGit <span class="o">{</span>
-    <span class="o">[</span><span class="na">CmdletBinding</span><span class="o">()]</span>
-    <span class="k">param</span><span class="o">(</span>
-        <span class="o">[</span><span class="kt">string</span><span class="o">]</span><span class="nv">$FileName</span>
-    <span class="o">)</span>
+</pre></td><td class="code"><pre><span class="kr">function</span><span class="w"> </span><span class="nf">Hide-FileFromGit</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">[</span><span class="n">CmdletBinding</span><span class="p">()]</span><span class="w">
+    </span><span class="kr">param</span><span class="p">(</span><span class="w">
+        </span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="nv">$FileName</span><span class="w">
+    </span><span class="p">)</span><span class="w">
 
-    <span class="c1"># Don't show file in changes</span>
-    git update-index --skip-worktree <span class="nv">$FileName</span>
-<span class="o">}</span>
+    </span><span class="c"># Don't show file in changes</span><span class="w">
+    </span><span class="n">git</span><span class="w"> </span><span class="nx">update-index</span><span class="w"> </span><span class="nt">--skip-worktree</span><span class="w"> </span><span class="nv">$FileName</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<span class="k">function </span>Show-FilesHiddenFromGit <span class="o">{</span>
-    <span class="o">[</span><span class="na">CmdletBinding</span><span class="o">()]</span>
-    <span class="k">param</span><span class="o">(</span>
-        <span class="o">[</span><span class="kt">string</span><span class="o">]</span><span class="nv">$FileName</span>
-    <span class="o">)</span>
-    <span class="c1"># List files you are skipping</span>
-    git <span class="nb">ls</span>-files -v <span class="nb">.</span> | <span class="nb">sls</span> ^S
-<span class="o">}</span>
+</span><span class="kr">function</span><span class="w"> </span><span class="nf">Show-FilesHiddenFromGit</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">[</span><span class="n">CmdletBinding</span><span class="p">()]</span><span class="w">
+    </span><span class="kr">param</span><span class="p">(</span><span class="w">
+        </span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="nv">$FileName</span><span class="w">
+    </span><span class="p">)</span><span class="w">
+    </span><span class="c"># List files you are skipping</span><span class="w">
+    </span><span class="n">git</span><span class="w"> </span><span class="nx">ls-files</span><span class="w"> </span><span class="nt">-v</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sls</span><span class="w"> </span><span class="err">^</span><span class="nx">S</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<span class="k">function </span>Undo-HideFileFromGit <span class="o">{</span>
-    <span class="o">[</span><span class="na">CmdletBinding</span><span class="o">()]</span>
-    <span class="k">param</span><span class="o">(</span>
-        <span class="o">[</span><span class="kt">string</span><span class="o">]</span><span class="nv">$FileName</span>
-    <span class="o">)</span>
-    <span class="c1"># Undo skip file</span>
-    git update-index --no-skip-worktree <span class="nv">$FileName</span>
-<span class="o">}</span></pre></td></tr></tbody></table></code></pre></figure>
+</span><span class="kr">function</span><span class="w"> </span><span class="nf">Undo-HideFileFromGit</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">[</span><span class="n">CmdletBinding</span><span class="p">()]</span><span class="w">
+    </span><span class="kr">param</span><span class="p">(</span><span class="w">
+        </span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="nv">$FileName</span><span class="w">
+    </span><span class="p">)</span><span class="w">
+    </span><span class="c"># Undo skip file</span><span class="w">
+    </span><span class="n">git</span><span class="w"> </span><span class="nx">update-index</span><span class="w"> </span><span class="nt">--no-skip-worktree</span><span class="w"> </span><span class="nv">$FileName</span><span class="w">
+</span><span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
-<p>This cmdlet is a convenient way to create a new branch from latest version of master and publish it to the remote repo. You may notice the <code class="highlighter-rouge">[Parameter(Mandatory)]</code> attribute on the <code class="highlighter-rouge">$NewBranchName</code> parameter. This is a really cool feature that makes it so that if you run this cmdlet without providing that parameter powershell will auto prompt you for the paramter value before proceeding.</p>
+<p>This cmdlet is a convenient way to create a new branch from latest version of master and publish it to the remote repo. You may notice the <code class="language-plaintext highlighter-rouge">[Parameter(Mandatory)]</code> attribute on the <code class="language-plaintext highlighter-rouge">$NewBranchName</code> parameter. This is a really cool feature that makes it so that if you run this cmdlet without providing that parameter powershell will auto prompt you for the paramter value before proceeding.</p>
 
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
@@ -355,28 +360,29 @@ Add-PoshGitToProfile -AllHosts</pre></td></tr></tbody></table></code></pre></fig
 20
 21
 22
-</pre></td><td class="code"><pre><span class="k">function </span>Publish-GitBranch <span class="o">{</span>
-   <span class="o">[</span><span class="na">CmdletBinding</span><span class="o">()]</span>
-   <span class="k">param</span><span class="o">(</span>
-      <span class="o">[</span>Parameter<span class="o">(</span>Mandatory<span class="o">)]</span>
-      <span class="o">[</span><span class="kt">string</span><span class="o">]</span><span class="nv">$NewBranchName</span>,
-      <span class="o">[</span><span class="kt">string</span><span class="o">]</span><span class="nv">$BaseBranch</span> <span class="o">=</span> <span class="s1">'master'</span>
-   <span class="o">)</span> 
-   <span class="k">try</span> <span class="o">{</span>
-      <span class="nv">$currentBranch</span> <span class="o">=</span> git rev-parse --abbrev-ref HEAD
-      <span class="k">if</span> <span class="o">(</span><span class="nv">$LASTEXITCODE</span> -ne 0<span class="o">)</span>  <span class="o">{</span> <span class="k">throw</span> <span class="s2">"You must be in a Git repository"</span> <span class="o">}</span>
+</pre></td><td class="code"><pre><span class="kr">function</span><span class="w"> </span><span class="nf">Publish-GitBranch</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="p">[</span><span class="n">CmdletBinding</span><span class="p">()]</span><span class="w">
+   </span><span class="kr">param</span><span class="p">(</span><span class="w">
+      </span><span class="p">[</span><span class="n">Parameter</span><span class="p">(</span><span class="n">Mandatory</span><span class="p">)]</span><span class="w">
+      </span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="nv">$NewBranchName</span><span class="p">,</span><span class="w">
+      </span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="nv">$BaseBranch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'master'</span><span class="w">
+   </span><span class="p">)</span><span class="w"> 
+   </span><span class="kr">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nv">$currentBranch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="nx">rev-parse</span><span class="w"> </span><span class="nt">--abbrev-ref</span><span class="w"> </span><span class="nx">HEAD</span><span class="w">
+      </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nv">$LASTEXITCODE</span><span class="w"> </span><span class="o">-ne</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="kr">throw</span><span class="w"> </span><span class="s2">"You must be in a Git repository"</span><span class="w"> </span><span class="p">}</span><span class="w">
 
-      <span class="nb">Write-Output</span> <span class="s2">"git checkout </span><span class="nv">$BaseBranch</span><span class="s2">"</span>
-      git checkout <span class="nv">$BaseBranch</span>
-      <span class="nb">Write-Output</span> <span class="s2">"git pull"</span>
-      git pull
-      <span class="nb">Write-Output</span> <span class="s2">"git checkout -b </span><span class="nv">$NewBranchName</span><span class="s2">"</span>
-      git checkout -b <span class="nv">$NewBranchName</span>
-      <span class="nb">Write-Output</span> <span class="s2">"git push --set-upstream origin </span><span class="nv">$NewBranchName</span><span class="s2">"</span>
-      git push --set-upstream origin <span class="nv">$NewBranchName</span>
-   <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-   <span class="o">}</span>
-<span class="o">}</span></pre></td></tr></tbody></table></code></pre></figure>
+      </span><span class="n">Write-Output</span><span class="w"> </span><span class="s2">"git checkout </span><span class="nv">$BaseBranch</span><span class="s2">"</span><span class="w">
+      </span><span class="n">git</span><span class="w"> </span><span class="nx">checkout</span><span class="w"> </span><span class="nv">$BaseBranch</span><span class="w">
+      </span><span class="n">Write-Output</span><span class="w"> </span><span class="s2">"git pull"</span><span class="w">
+      </span><span class="n">git</span><span class="w"> </span><span class="nx">pull</span><span class="w">
+      </span><span class="n">Write-Output</span><span class="w"> </span><span class="s2">"git checkout -b </span><span class="nv">$NewBranchName</span><span class="s2">"</span><span class="w">
+      </span><span class="n">git</span><span class="w"> </span><span class="nx">checkout</span><span class="w"> </span><span class="nt">-b</span><span class="w"> </span><span class="nv">$NewBranchName</span><span class="w">
+      </span><span class="n">Write-Output</span><span class="w"> </span><span class="s2">"git push --set-upstream origin </span><span class="nv">$NewBranchName</span><span class="s2">"</span><span class="w">
+      </span><span class="n">git</span><span class="w"> </span><span class="nx">push</span><span class="w"> </span><span class="nt">--set-upstream</span><span class="w"> </span><span class="nx">origin</span><span class="w"> </span><span class="nv">$NewBranchName</span><span class="w">
+   </span><span class="p">}</span><span class="w"> </span><span class="kr">finally</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
 
 <p>I have a lot more stuff in my powershell profile but is essentially just variations on what I’ve already shown above but more tailored to my specific work environment.</p>
 
