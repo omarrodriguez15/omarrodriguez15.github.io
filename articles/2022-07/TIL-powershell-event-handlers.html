@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Today I learned how to recognize event handlers in powershell code. I learned how to recognize it by helping a coworker troubleshoot a memory usage issue.">
+  <meta name="keywords" content="omar, blog, dotnet, C#, powershell, and rodriguez">
+  <meta name="author" content="TIL about powershell event handlers | Devlog">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TIL about powershell event handlers | Devlog">
+  <meta name="twitter:description" content="Today I learned how to recognize event handlers in powershell code. I learned how to recognize it by helping a coworker troubleshoot a memory usage issue.">
+  
+    <meta property="twitter:image" content="https://www.therealomar.com/img/pwsh.jpeg">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers">
+  <meta property="og:title" content="TIL about powershell event handlers | Devlog">
+  <meta property="og:description" content="Today I learned how to recognize event handlers in powershell code. I learned how to recognize it by helping a coworker troubleshoot a memory usage issue.">
+  
+    <meta property="og:image" content="https://www.therealomar.com/img/pwsh.jpeg">
+  
+  <title>TIL about powershell event handlers | Devlog</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="https://www.therealomar.com/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.therealomar.com/css/main.css">
+
+  <link rel="canonical" href="https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers">
+  <link rel="alternate" type="application/rss+xml" title="Devlog" href="https://www.therealomar.com/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="https://www.therealomar.com/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="https://www.therealomar.com/coffee.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="https://www.therealomar.com/">
+    <img src="https://www.therealomar.com/img/big-coffee.png" alt="" class="avatar">
+  </a>
+  
+  <a href="https://www.therealomar.com/" class="author_name">Omar Rodriguez</a>
+  <span class="author_job">Software developer</span>
+  <span class="author_bio mbm">An attempt to log my development tips, tricks, and hurdles.</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/categories/">Categories</a>
+      </li>
+            
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/resume/">Resume</a>
+      </li>
+        
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/tags/">Tags</a>
+      </li>
+         
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('devlog@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    <li><a href="http://twitter.com/@devlog17" class="social-link-item" target="_blank"><i class="fa fa-fw fa-twitter"></i></a></li>
+    
+    <li><a href="http://linkedin.com/in/omar-rodriguez-0299b190" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/omarrodriguez15" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    <li><a href="http://stackoverflow.com/users/4172545/omar-rodriguez" class="social-link-item" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "https://www.therealomar.com/" >
+  Home
+</a>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "https://www.therealomar.com/img/pwsh.jpeg"
+  
+  alt="TIL about powershell event handlers feature image">
+
+  
+  <span class="image-credit">Photo Credit: <a href="">Omar Rodriguez</a></span>
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="TIL about powershell event handlers">TIL about powershell event handlers</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        30 JUL 2022
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    4 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <p>Today I learned how to recognize event handlers in powershell code. I learned how to recognize it by helping a coworker troubleshoot a memory usage issue.</p>
+
+<!--more-->
+<h1 id="the-problem">The problem</h1>
+<p>We had a pretty simple powershell script to display an image, with a background gradient, full screen while some other work happened. It was pretty straight forward and simple, so it was very odd when we noticed every time we ran the script the memory kept rising and falling in a sawtooth pattern.</p>
+
+<p>A sawtooth pattern is where the memory climbs then suddenly drops and continues to repeat this pattern. When viewing the pattern on a graph it looks like a row of shark teeth or sawtooths. The pattern is well known but the cause of it varies widely and could be because of many different reasons.</p>
+
+<p>If you were to recreate this issue on a laptop with plenty of memory, you likely wouldn’t even notice the issue, especially if you use a small enough image. The system we were needing to use this script on had limited resources and this little spike in memory usage was causing OOM (OutOfMemory) errors.</p>
+
+<h1 id="the-problematic-code">The problematic code</h1>
+<p>Here is a snippet of the code, and what it originally looked like with the bug in it.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="o">...</span><span class="w">
+</span><span class="nv">$form</span><span class="o">.</span><span class="nf">add_paint</span><span class="p">({</span><span class="w">
+  </span><span class="nv">$back</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">System.Drawing.Bitmap</span><span class="p">]::</span><span class="n">new</span><span class="p">(</span><span class="nv">$pictureBox</span><span class="o">.</span><span class="nf">Width</span><span class="p">,</span><span class="w"> </span><span class="nv">$pictureBox</span><span class="o">.</span><span class="nf">Height</span><span class="p">)</span><span class="w">
+  </span><span class="nv">$myBrush</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">System.Drawing.Drawing2D.LinearGradientBrush</span><span class="p">]::</span><span class="n">new</span><span class="p">(</span><span class="w">
+      </span><span class="p">[</span><span class="n">System.Drawing.Point</span><span class="p">]::</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w">
+      </span><span class="p">[</span><span class="n">System.Drawing.Point</span><span class="p">]::</span><span class="n">new</span><span class="p">(</span><span class="nv">$pictureBox</span><span class="o">.</span><span class="nf">Width</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w">
+      </span><span class="p">[</span><span class="n">System.Drawing.Color</span><span class="p">]::</span><span class="n">FromArgb</span><span class="p">(</span><span class="mi">166</span><span class="p">,</span><span class="w"> </span><span class="mi">206</span><span class="p">,</span><span class="w"> </span><span class="mi">57</span><span class="p">),</span><span class="w">
+      </span><span class="p">[</span><span class="n">System.Drawing.Color</span><span class="p">]::</span><span class="n">FromArgb</span><span class="p">(</span><span class="mi">49</span><span class="p">,</span><span class="w"> </span><span class="mi">169</span><span class="p">,</span><span class="w"> </span><span class="mi">224</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+  </span><span class="nv">$graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">System.Drawing.Graphics</span><span class="p">]::</span><span class="n">FromImage</span><span class="p">(</span><span class="nv">$back</span><span class="p">)</span><span class="w">
+  </span><span class="nv">$graphics</span><span class="o">.</span><span class="nf">FillRectangle</span><span class="p">(</span><span class="nv">$myBrush</span><span class="p">,</span><span class="w"> </span><span class="nv">$pictureBox</span><span class="o">.</span><span class="nf">DisplayRectangle</span><span class="p">)</span><span class="w">
+  </span><span class="nv">$pictureBox</span><span class="o">.</span><span class="nf">BackgroundImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$back</span><span class="w">
+</span><span class="p">})</span><span class="w">
+</span><span class="nv">$form</span><span class="o">.</span><span class="nf">controls</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">$pictureBox</span><span class="p">)</span><span class="w">
+</span><span class="p">[</span><span class="n">System.Windows.Forms.Application</span><span class="p">]::</span><span class="n">Run</span><span class="p">(</span><span class="nv">$form</span><span class="p">)</span><span class="w">
+</span><span class="o">...</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h1 id="initial-troubleshooting">Initial troubleshooting</h1>
+<p>Something that initially stood out in the code was the <code class="language-plaintext highlighter-rouge">$form.add_paint(...)</code> call. It was odd seeing a code block in a method call like that. .NET has pretty decent api documentation, so that was my first stop. I could not find anything that referenced this add_paint call on the windows form api.</p>
+
+<h1 id="the-breakthrough">The breakthrough</h1>
+<p>After some digging, and lots of head scratching, I found that this call is actually an event handler on the form object for the Paint event. It makes sense that the event handlers are named and used differently in powershell. Powershell doesn’t have the <code class="language-plaintext highlighter-rouge">+=</code> syntax to subscribe to event handlers like C#.</p>
+
+<p>If the object has an event handler than the powershell equivalent is add_eventName(..), where eventName is the name of the original event in the .NET api. <a href="https://stackoverflow.com/a/64232782/4172545">Here is a much more detailed explanation I found on SO about powershell events</a></p>
+
+<h1 id="understanding-the-problem">Understanding the problem</h1>
+<p>So now once we understood what this code was doing it was more obvious what the problem was. The paint event is fired any time the control needs to redraw due to changes to the control. In the paint event handler we had, it was modifying one of the controls on our form by adding a background, which caused the paint event to fire. So basically we had an infinite loop of the paint event firing, us modifying the form, which caused the paint event to fire again and start the loop all over.</p>
+
+<p>Speculating as to why this caused the memory to spike and then drop is that we were loading multiple bitmaps into memory on each loop and causing the memory to spike. Then likely the .NET runtime ran GC (garbage collection) and cleaned up unused bitmaps.</p>
+
+<h1 id="the-fix">The fix</h1>
+<p>The fix was to use the <code class="language-plaintext highlighter-rouge">Shown</code> event, or <code class="language-plaintext highlighter-rouge">.add_shown(...)</code> in powershell, and not the <code class="language-plaintext highlighter-rouge">Paint</code> event. The shown event only fires once when the form initially is shown. We have to wait for the form to be shown so that we can use its dimensions to set a custom gradient background behind the image we want to show.</p>
+
+<p>If you have any comments or questions reach out on Twitter <a href="https://twitter.com/omarr2d2">@Omarr2d2</a>.</p>
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2022 Omar Rodriguez. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://www.therealomar.com/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://www.therealomar.com/js/main.js"></script> -->
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54684800-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+</body>
+</html>
