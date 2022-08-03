@@ -5,9 +5,49 @@
     <description>A simple blog theme powered by jekyll.</description>
     <link>https://www.therealomar.com/</link>
     <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2022-07-30</pubDate>
-    <lastBuildDate>Sat, 30 Jul 2022 10:03:45 -0500</lastBuildDate>
+    <pubDate>2022-08-02</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2022 22:15:49 -0500</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>TIL about spawning processes without a shell</title>
+        <description>&lt;p&gt;Today I learned about the differences between spawning a process in a shell and without a shell.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;h1 id=&quot;the-problem&quot;&gt;The problem&lt;/h1&gt;
+
+&lt;p&gt;I was helping another dev with troubleshooting some new code. He was using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;child_process.spawn()&lt;/code&gt;. Which takes a base command, a string array of arguments, and an options object. This is what the code we were troubleshooting looked like.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pidToKill&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'12345'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child_process.spawnSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'taskkill.exe'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;/pid&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;${pidToKill}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;`]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;the-breakthrough&quot;&gt;The breakthrough&lt;/h1&gt;
+
+&lt;p&gt;After some experimenting with the child_process spawn api, we found out that the shell option set to false was the problem. When the shell option is false it means the arguments are sent directly to the executable. So there is no intermediate processing of the arguments, which means the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;taskkill.exe&lt;/code&gt; received the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/pid 12345&lt;/code&gt; argument as a single argument. Where as if we were to open a shell like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cmd.exe&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;powershell.exe&lt;/code&gt; and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;taskkill.exe /pid 12345&lt;/code&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;taskkill.exe&lt;/code&gt; receives two arguments because the shell parses everything after the command and passes them in as separate arguments.&lt;/p&gt;
+
+&lt;p&gt;The fix was to split the arguments into separate entries in the arguments array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;child_process.spawnSync('taskkill.exe', [ '/pid', pidToKill ], { shell: false })&lt;/code&gt;. An alternative fix could have been to set shell to true. However if the shell option is set to true, we must be very careful to sanitize all arguments being passed. Any arguments containing shell metacharacters may be used to trigger arbitrary command execution.&lt;/p&gt;
+</description>
+        <pubDate>2022-08-02</pubDate>
+        <link>https://www.therealomar.com/articles/2022-08/TIL-about-spawning-procs-in-shell</link>
+        <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-about-spawning-procs-in-shell</guid>
+        
+        
+        <category>post-7</category>
+        
+        <category>development</category>
+        
+        <category>dev</category>
+        
+      </item>
     
       <item>
         <title>TIL about powershell event handlers</title>
@@ -76,7 +116,7 @@
 
 &lt;p&gt;If you have any comments or questions reach out on Twitter &lt;a href=&quot;https://twitter.com/omarr2d2&quot;&gt;@Omarr2d2&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>2022-07-30</pubDate>
+        <pubDate>2022-08-02</pubDate>
         <link>https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers</guid>
         
@@ -306,7 +346,7 @@ Install it via powershell gallery.&lt;/p&gt;
 
 &lt;p&gt;If you have any comments or questions reach out on Twitter &lt;a href=&quot;https://twitter.com/omarr2d2&quot;&gt;@Omarr2d2&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>2022-07-30</pubDate>
+        <pubDate>2022-08-02</pubDate>
         <link>https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</guid>
         
@@ -404,7 +444,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
   &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+art+of+war&quot;&gt;The art of war&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>2022-07-30</pubDate>
+        <pubDate>2022-08-02</pubDate>
         <link>https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</guid>
         
@@ -489,7 +529,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;/ul&gt;
 
 </description>
-        <pubDate>2022-07-30</pubDate>
+        <pubDate>2022-08-02</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</guid>
         
@@ -691,7 +731,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;h2 id=&quot;room-for-improvement&quot;&gt;Room for improvement&lt;/h2&gt;
 &lt;p&gt;This class could be improved by adding an ability to skip files and file extensions.&lt;/p&gt;
 </description>
-        <pubDate>2022-07-30</pubDate>
+        <pubDate>2022-08-02</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
@@ -720,7 +760,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
         <title>Meta post</title>
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
-        <pubDate>2022-07-30</pubDate>
+        <pubDate>2022-08-02</pubDate>
         <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         
