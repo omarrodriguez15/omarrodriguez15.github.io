@@ -5,9 +5,82 @@
     <description>A simple blog theme powered by jekyll.</description>
     <link>https://www.therealomar.com/</link>
     <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2022-08-03</pubDate>
-    <lastBuildDate>Wed, 03 Aug 2022 22:20:01 -0500</lastBuildDate>
+    <pubDate>2022-08-08</pubDate>
+    <lastBuildDate>Mon, 08 Aug 2022 22:42:01 -0500</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>TIL how to curry in javascript</title>
+        <description>&lt;p&gt;Today I learned how to make a very simple currying function in javascript. I was already familiar with the concept of currying, however after seeing this really simply currying function in javascript it really cemented the concept in my head.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;h1 id=&quot;currying&quot;&gt;Currying&lt;/h1&gt;
+
+&lt;p&gt;Currying is a popular technique in functional programming. Many functional programming languages support currying natively. &lt;a href=&quot;https://en.wikipedia.org/wiki/Currying&quot;&gt;Here is a definition of currying directly from Wikipedia&lt;/a&gt; :&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;In mathematics and computer science, currying is the technique of converting a function that takes multiple arguments into a sequence of functions that each takes a single argument.
+Put simply, it is a way to break down a function that takes multiple arguments into smaller functions that only take one argument.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;currying-in-javascript&quot;&gt;Currying in javascript&lt;/h1&gt;
+
+&lt;p&gt;In javascript currying is very simple to implement due to the closure feature. This is from &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures&quot;&gt;Mozilla dev documentation on Closure&lt;/a&gt; :&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;… a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Here is a very simple implementation of currying in javascript.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curry&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Here is an example of using the currying function.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;addThree&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addThree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This outputs 10&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;benefits-of-currying&quot;&gt;Benefits of currying&lt;/h1&gt;
+&lt;p&gt;The above example is very simple, but there are many benefits to currying functions.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Composing a specialized version of a function so that you don’t have to continue to pass the same parameters and only pass the arguments that change or are important to the caller.&lt;/li&gt;
+  &lt;li&gt;Composing higher order functions, or functions that take functions, makes code more declarative and easier to read.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;Implementing a currying function in javascript is very helpful in understanding closures and currying. If you do decide to use currying in your javascript or typescript code base I would recommend first looking into using a functional library. The implementation of currying above is just for example purposes and is an incomplete implementation.&lt;/p&gt;
+</description>
+        <pubDate>2022-08-08</pubDate>
+        <link>https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript</link>
+        <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript</guid>
+        
+        
+        <category>post-9</category>
+        
+        <category>development</category>
+        
+        <category>dev</category>
+        
+      </item>
     
       <item>
         <title>TIL that javascript arrays are objects</title>
@@ -46,7 +119,7 @@
   &lt;p&gt;While the Plain Tiger’s beauty is part of its charm, its looks can also be deadly. During its larval stages, the butterfly ingests alkaloids that are poisonous to birds—its main predator—which are often attracted to the insect’s markings. After ingesting the Plain Tiger, a bird will vomit repeatedly—occasionally fatally. If the bird lives, it will let other birds know to avoid the insect, which can also be recognized by its leisurely, meandering pattern of flying low to the earth.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2022-08/TIL-javascript-arrays-are-objects</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-javascript-arrays-are-objects</guid>
         
@@ -86,7 +159,7 @@
 
 &lt;p&gt;The fix was to split the arguments into separate entries in the arguments array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;child_process.spawnSync('taskkill.exe', [ '/pid', pidToKill ], { shell: false })&lt;/code&gt;. An alternative fix could have been to set shell to true. However if the shell option is set to true, we must be very careful to sanitize all arguments being passed. Any arguments containing shell metacharacters may be used to trigger arbitrary command execution.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2022-08/TIL-about-spawning-procs-in-shell</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-about-spawning-procs-in-shell</guid>
         
@@ -166,7 +239,7 @@
 
 &lt;p&gt;If you have any comments or questions reach out on Twitter &lt;a href=&quot;https://twitter.com/omarr2d2&quot;&gt;@Omarr2d2&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers</guid>
         
@@ -396,7 +469,7 @@ Install it via powershell gallery.&lt;/p&gt;
 
 &lt;p&gt;If you have any comments or questions reach out on Twitter &lt;a href=&quot;https://twitter.com/omarr2d2&quot;&gt;@Omarr2d2&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</guid>
         
@@ -494,7 +567,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
   &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+art+of+war&quot;&gt;The art of war&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</guid>
         
@@ -579,7 +652,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;/ul&gt;
 
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</guid>
         
@@ -781,7 +854,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;h2 id=&quot;room-for-improvement&quot;&gt;Room for improvement&lt;/h2&gt;
 &lt;p&gt;This class could be improved by adding an ability to skip files and file extensions.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
@@ -810,7 +883,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
         <title>Meta post</title>
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-03</pubDate>
+        <pubDate>2022-08-08</pubDate>
         <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         
