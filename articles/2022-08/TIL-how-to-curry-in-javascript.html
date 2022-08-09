@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Today I learned how to make a very simple currying function in javascript. I was already familiar with the concept of currying, however after seeing this rea...">
+  <meta name="keywords" content="omar, blog, dotnet, C#, powershell, and rodriguez">
+  <meta name="author" content="TIL how to curry in javascript | Devlog">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TIL how to curry in javascript | Devlog">
+  <meta name="twitter:description" content="Today I learned how to make a very simple currying function in javascript. I was already familiar with the concept of currying, however after seeing this rea...">
+  
+    <meta property="twitter:image" content="https://www.therealomar.com/img/leonids-logo.png">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript">
+  <meta property="og:title" content="TIL how to curry in javascript | Devlog">
+  <meta property="og:description" content="Today I learned how to make a very simple currying function in javascript. I was already familiar with the concept of currying, however after seeing this rea...">
+  
+    <meta property="og:image" content="https://www.therealomar.com/img/leonids-logo.png">
+  
+  <title>TIL how to curry in javascript | Devlog</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="https://www.therealomar.com/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.therealomar.com/css/main.css">
+
+  <link rel="canonical" href="https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript">
+  <link rel="alternate" type="application/rss+xml" title="Devlog" href="https://www.therealomar.com/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="https://www.therealomar.com/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="https://www.therealomar.com/coffee.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="https://www.therealomar.com/">
+    <img src="https://www.therealomar.com/img/big-coffee.png" alt="" class="avatar">
+  </a>
+  
+  <a href="https://www.therealomar.com/" class="author_name">Omar Rodriguez</a>
+  <span class="author_job">Software developer</span>
+  <span class="author_bio mbm">An attempt to log my development tips, tricks, and hurdles.</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/categories/">Categories</a>
+      </li>
+            
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/resume/">Resume</a>
+      </li>
+        
+      <li class="nav-item">
+        <a href="https://www.therealomar.com/tags/">Tags</a>
+      </li>
+         
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('devlog@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    <li><a href="http://twitter.com/@devlog17" class="social-link-item" target="_blank"><i class="fa fa-fw fa-twitter"></i></a></li>
+    
+    <li><a href="http://linkedin.com/in/omar-rodriguez-0299b190" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/omarrodriguez15" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    <li><a href="http://stackoverflow.com/users/4172545/omar-rodriguez" class="social-link-item" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "https://www.therealomar.com/" >
+  Home
+</a>
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="TIL how to curry in javascript">TIL how to curry in javascript</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        8 AUG 2022
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    2 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <p>Today I learned how to make a very simple currying function in javascript. I was already familiar with the concept of currying, however after seeing this really simply currying function in javascript it really cemented the concept in my head.</p>
+
+<!--more-->
+<h1 id="currying">Currying</h1>
+
+<p>Currying is a popular technique in functional programming. Many functional programming languages support currying natively. <a href="https://en.wikipedia.org/wiki/Currying">Here is a definition of currying directly from Wikipedia</a> :</p>
+<blockquote>
+  <p>In mathematics and computer science, currying is the technique of converting a function that takes multiple arguments into a sequence of functions that each takes a single argument.
+Put simply, it is a way to break down a function that takes multiple arguments into smaller functions that only take one argument.</p>
+</blockquote>
+
+<h1 id="currying-in-javascript">Currying in javascript</h1>
+
+<p>In javascript currying is very simple to implement due to the closure feature. This is from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">Mozilla dev documentation on Closure</a> :</p>
+<blockquote>
+  <p>… a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.</p>
+</blockquote>
+
+<p>Here is a very simple implementation of currying in javascript.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="kd">function</span> <span class="nx">curry</span> <span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">arg2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">func</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Here is an example of using the currying function.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">arg1</span> <span class="o">+</span> <span class="nx">arg2</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">addThree</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">(</span><span class="nx">add</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addThree</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="c1">// This outputs 10</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h1 id="benefits-of-currying">Benefits of currying</h1>
+<p>The above example is very simple, but there are many benefits to currying functions.</p>
+<ul>
+  <li>Composing a specialized version of a function so that you don’t have to continue to pass the same parameters and only pass the arguments that change or are important to the caller.</li>
+  <li>Composing higher order functions, or functions that take functions, makes code more declarative and easier to read.</li>
+</ul>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>Implementing a currying function in javascript is very helpful in understanding closures and currying. If you do decide to use currying in your javascript or typescript code base I would recommend first looking into using a functional library. The implementation of currying above is just for example purposes and is an incomplete implementation.</p>
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2022 Omar Rodriguez. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://www.therealomar.com/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://www.therealomar.com/js/main.js"></script> -->
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54684800-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+</body>
+</html>
