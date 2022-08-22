@@ -5,9 +5,61 @@
     <description>A simple blog theme powered by jekyll.</description>
     <link>https://www.therealomar.com/</link>
     <atom:link href="https://www.therealomar.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2022-08-08</pubDate>
-    <lastBuildDate>Mon, 08 Aug 2022 22:42:01 -0500</lastBuildDate>
+    <pubDate>2022-08-21</pubDate>
+    <lastBuildDate>Sun, 21 Aug 2022 21:50:04 -0500</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>TIL about an unexpected behavior in powershell's ConvertTo-Json</title>
+        <description>&lt;p&gt;Today I learned about an unexpected behavior in powershell’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConvertTo-Json&lt;/code&gt;. When you pipe more than one object to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConvertTo-Json&lt;/code&gt; cmdlet the output is an array of objects, as expected. When one object, or an array with a single object, is piped to it a single object is outputted.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;h1 id=&quot;discovering-the-behavior&quot;&gt;Discovering the behavior&lt;/h1&gt;
+&lt;p&gt;This behavior was discovered while looking into a bug where some code that was querying some objects in powershell behaved unexpectedly. The results of the query were converted to JSON and written to a JSON file. That JSON file was then read and parsed with the expectation that the contents was an array. Which was the result in most cases, since in most cases the query returned more than one object.&lt;/p&gt;
+
+&lt;p&gt;However in one case we kept seeing a parsing error when reading the JSON. The parsing error was because we were expecting the JSON file to contain an array of objects. But in some cases it was getting an object or an empty string.&lt;/p&gt;
+
+&lt;h1 id=&quot;expected-behavior&quot;&gt;Expected behavior&lt;/h1&gt;
+&lt;p&gt;What I was expecting powershell to output, given the output of a cmdlet that outputs arrays of objects, is to always output an array regardless of number of objects given. However instead what we get is the following.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;@(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ConvertTo-Json&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Expected: [‘foo’, ‘bar’]&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;Actual: [‘foo’, ‘bar’]&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;@(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ConvertTo-Json&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Expected: [‘foo’]&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;Actual: ‘foo’&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;@()&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ConvertTo-Json&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Expected: []&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;Actual:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;It makes sense why &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConvertTo-Json&lt;/code&gt; behaves like this even though it is not immediately obvious. The cmdlet needs to be able to turn input from any source into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt;. The input could come from a web API or could come from a cmdlet that normally outputs an array of objects. In both scenarios it need to behave consistently without any knowledge of the source. A bit of an inconvenient behavior in the scenario of the bug we found, however the behavior makes complete sense.&lt;/p&gt;
+</description>
+        <pubDate>2022-08-21</pubDate>
+        <link>https://www.therealomar.com/articles/2022-08/TIL-subtle-ps-convert-to-json-bug</link>
+        <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-subtle-ps-convert-to-json-bug</guid>
+        
+        
+        <category>post-10</category>
+        
+        <category>development</category>
+        
+        <category>dev</category>
+        
+        <category>til</category>
+        
+      </item>
     
       <item>
         <title>TIL how to curry in javascript</title>
@@ -69,7 +121,7 @@ Put simply, it is a way to break down a function that takes multiple arguments i
 &lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
 &lt;p&gt;Implementing a currying function in javascript is very helpful in understanding closures and currying. If you do decide to use currying in your javascript or typescript code base I would recommend first looking into using a functional library. The implementation of currying above is just for example purposes and is an incomplete implementation.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-how-to-curry-in-javascript</guid>
         
@@ -79,6 +131,8 @@ Put simply, it is a way to break down a function that takes multiple arguments i
         <category>development</category>
         
         <category>dev</category>
+        
+        <category>til</category>
         
       </item>
     
@@ -119,7 +173,7 @@ Put simply, it is a way to break down a function that takes multiple arguments i
   &lt;p&gt;While the Plain Tiger’s beauty is part of its charm, its looks can also be deadly. During its larval stages, the butterfly ingests alkaloids that are poisonous to birds—its main predator—which are often attracted to the insect’s markings. After ingesting the Plain Tiger, a bird will vomit repeatedly—occasionally fatally. If the bird lives, it will let other birds know to avoid the insect, which can also be recognized by its leisurely, meandering pattern of flying low to the earth.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2022-08/TIL-javascript-arrays-are-objects</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-javascript-arrays-are-objects</guid>
         
@@ -129,6 +183,8 @@ Put simply, it is a way to break down a function that takes multiple arguments i
         <category>development</category>
         
         <category>dev</category>
+        
+        <category>til</category>
         
       </item>
     
@@ -159,7 +215,7 @@ Put simply, it is a way to break down a function that takes multiple arguments i
 
 &lt;p&gt;The fix was to split the arguments into separate entries in the arguments array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;child_process.spawnSync('taskkill.exe', [ '/pid', pidToKill ], { shell: false })&lt;/code&gt;. An alternative fix could have been to set shell to true. However if the shell option is set to true, we must be very careful to sanitize all arguments being passed. Any arguments containing shell metacharacters may be used to trigger arbitrary command execution.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2022-08/TIL-about-spawning-procs-in-shell</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-08/TIL-about-spawning-procs-in-shell</guid>
         
@@ -169,6 +225,8 @@ Put simply, it is a way to break down a function that takes multiple arguments i
         <category>development</category>
         
         <category>dev</category>
+        
+        <category>til</category>
         
       </item>
     
@@ -239,7 +297,7 @@ Put simply, it is a way to break down a function that takes multiple arguments i
 
 &lt;p&gt;If you have any comments or questions reach out on Twitter &lt;a href=&quot;https://twitter.com/omarr2d2&quot;&gt;@Omarr2d2&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2022-07/TIL-powershell-event-handlers</guid>
         
@@ -249,6 +307,8 @@ Put simply, it is a way to break down a function that takes multiple arguments i
         <category>development</category>
         
         <category>dev</category>
+        
+        <category>til</category>
         
       </item>
     
@@ -469,7 +529,7 @@ Install it via powershell gallery.&lt;/p&gt;
 
 &lt;p&gt;If you have any comments or questions reach out on Twitter &lt;a href=&quot;https://twitter.com/omarr2d2&quot;&gt;@Omarr2d2&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2021-04/Increasing-my-command-line-efficiency</guid>
         
@@ -567,7 +627,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
   &lt;li&gt;&lt;a href=&quot;https://lmgtfy.com/?q=The+art+of+war&quot;&gt;The art of war&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2020-01/how-i-finally-achived-a-meaningful-new-years-resolution</guid>
         
@@ -652,7 +712,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;/ul&gt;
 
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/Git-the-most-edited-files-in-a-project</guid>
         
@@ -854,7 +914,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
 &lt;h2 id=&quot;room-for-improvement&quot;&gt;Room for improvement&lt;/h2&gt;
 &lt;p&gt;This class could be improved by adding an ability to skip files and file extensions.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2019-06/compression-android</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-06/compression-android</guid>
         
@@ -883,7 +943,7 @@ See the full list of books I read &lt;a href=&quot;#books&quot;&gt;here.&lt;/a&g
         <title>Meta post</title>
         <description>&lt;p&gt;The purpose of this blog is to try and organize my thoughts and archive my personal tips, tricks, and solutions to every day problems.&lt;/p&gt;
 </description>
-        <pubDate>2022-08-08</pubDate>
+        <pubDate>2022-08-21</pubDate>
         <link>https://www.therealomar.com/articles/2019-05/meta-post</link>
         <guid isPermaLink="true">https://www.therealomar.com/articles/2019-05/meta-post</guid>
         
